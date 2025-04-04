@@ -4,6 +4,10 @@
     <title>Волейбольная статистика</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
+        .heading{
+            text-align: center;
+            font-size: 60px;
+        }
         .team-list {
             list-style: none;
             padding: 0;
@@ -59,7 +63,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Волейбольная статистика</h1>
+        <h1 class="heading">Волейбольная статистика</h1>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -72,7 +76,7 @@
         {% endwith %}
 
         <div class="actions">
-            <a href="{{ url_for('show_create_team') }}" class="button primary">Создать новую команду</a>
+            <a href="{{ url_for('show_create_team') }}" class="button primary">Создать новую команду</a><br>
             <a href="{{ url_for('match') }}" class="button warning" {% if not teams %}disabled style="opacity: 0.5; pointer-events: none;"{% endif %}>Начать матч</a>
         </div>
 
