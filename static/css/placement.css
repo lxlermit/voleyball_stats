@@ -153,7 +153,7 @@
 
 .net-label {
     text-align: center;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: bold;
     padding: 1px;
     background: #dfb9b6;
@@ -425,7 +425,7 @@
 .serving-row {
     display: flex;
     gap: 1px;
-    margin-bottom: 8px;
+    margin-bottom: 1px;
 }
 
 .serving-field {
