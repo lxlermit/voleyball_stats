@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify, abort
 import json
 import os
 from datetime import datetime
@@ -8,6 +8,7 @@ app.secret_key = 'your_very_secret_key_12345'
 app.config['UPLOAD_FOLDER'] = 'teams'
 app.config['MATCHES_FOLDER'] = 'matches'
 
+TEAMS_DIR = 'teams'
 
 @app.route('/')
 def index():
@@ -17,6 +18,45 @@ def index():
     except Exception as e:
         flash(f'Ошибка загрузки команд: {str(e)}', 'error')
         return render_template('index.html', teams=[])
+
+
+@app.route('/teams')
+def teams():
+    """Список всех команд"""
+    teams = []
+    for filename in get_team_files():
+        with open(os.path.join(TEAMS_DIR, filename), 'r', encoding='utf-8') as f:
+            team_data = json.load(f)
+            teams.append({
+                'name': team_data.get('team', filename[:-5]),
+                'filename': filename,
+                'player_count': len(team_data.get('players', []))
+            })
+    return render_template('teams.html', teams=teams)
+
+
+@app.route('/team/<team_name>')
+def team_detail(team_name):
+    """Детальная информация о команде"""
+    filename = f"{team_name}.json"
+    if filename not in get_team_files():
+        abort(404)
+
+    with open(os.path.join(TEAMS_DIR, filename), 'r', encoding='utf-8') as f:
+        team_data = json.load(f)
+
+    # Группируем игроков по амплуа для удобного отображения
+    players_by_role = {}
+    for player in team_data.get('players', []):
+        role = player.get('role', 'Без амплуа')
+        if role not in players_by_role:
+            players_by_role[role] = []
+        players_by_role[role].append(player)
+
+    return render_template('team_detail.html',
+                           team=team_data,
+                           players_by_role=players_by_role)
+
 
 
 @app.route('/create_team', methods=['GET'])
@@ -30,6 +70,14 @@ def show_create_team():
     except Exception as e:
         flash(f'Ошибка при создании команды: {str(e)}', 'error')
         return redirect(url_for('index'))
+
+def get_team_files():
+    """Получаем список всех файлов команд"""
+    os.makedirs(TEAMS_DIR, exist_ok=True)
+    return [f for f in os.listdir(TEAMS_DIR) if f.endswith('.json')]
+
+
+
 
 
 @app.route('/edit_team/<team_name>')
@@ -429,6 +477,53 @@ def save_set():
 
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
+
+
+@app.route('/stats')
+def stats():
+    try:
+        with open('match_data.json', 'r') as f:
+            match_data = json.load(f)
+        return render_template('stats.html', data=match_data)
+    except FileNotFoundError:
+        return render_template('stats.html', data=None)
+
+
+@app.route('/settings')
+def settings():
+    return render_template('settings.html')
+
+
+@app.route('/add_team', methods=['GET', 'POST'])
+def add_team():
+    """Добавление новой команды"""
+    if request.method == 'POST':
+        team_name = request.form.get('team_name').strip()
+        if not team_name:
+            return render_template('add_team.html', error="Введите название команды")
+
+        filename = f"{team_name}.json"
+        if filename in get_team_files():
+            return render_template('add_team.html', error="Команда с таким именем уже существует")
+
+        # Создаем базовую структуру новой команды
+        new_team = {
+            "team": team_name,
+            "players": []
+        }
+
+        with open(os.path.join(TEAMS_DIR, filename), 'w', encoding='utf-8') as f:
+            json.dump(new_team, f, ensure_ascii=False, indent=4)
+
+        return redirect(url_for('teams'))
+
+    return render_template('add_team.html')
+
+
+@app.route('/edit_team/<int:team_id>', methods=['GET', 'POST'])
+def edit_team(team_id):
+    # Реализация аналогична add_team, но с изменением существующей команды
+    pass
 
 
 if __name__ == '__main__':

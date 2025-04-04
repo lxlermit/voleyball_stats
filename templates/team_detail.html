@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ team.team }} - Состав</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <style>
+        .player-card {
+            border-left: 4px solid;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: white;
+        }
+        .player-header {
+            display: flex;
+            justify-content: space-between;
+        }
+        .player-number {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ team.team }} - Состав команды</h1>
+
+        <a href="{{ url_for('teams') }}" class="btn">← Назад к списку команд</a>
+
+        {% for role, players in players_by_role.items() %}
+        <h2 style="margin-top: 20px;">{{ role }}</h2>
+
+        <div class="players-list">
+            {% for player in players %}
+            <div class="player-card" style="border-color: {{ player.color }};">
+                <div class="player-header">
+                    <div>
+                        <span class="player-number">№{{ player.number }}</span>
+                        <strong>{{ player.last_name }} {{ player.first_name }}</strong>
+                    </div>
+                    <div>
+                        Позиции: {{ player.front_pos }}/{{ player.back_pos }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

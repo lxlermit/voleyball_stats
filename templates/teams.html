@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Управление командами</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <style>
+        .team-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .team-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .team-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .player-count {
+            color: #7f8c8d;
+        }
+        .team-actions {
+            margin-top: 10px;
+        }
+        .role-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Управление командами</h1>
+
+        <a href="{{ url_for('add_team') }}" class="btn btn-primary">
+            + Добавить новую команду
+        </a>
+
+        <div class="teams-list" style="margin-top: 20px;">
+            {% for team in teams %}
+            <div class="team-card">
+                <div class="team-header">
+                    <span class="team-name">{{ team.name }}</span>
+                    <span class="player-count">{{ team.player_count }} игроков</span>
+                </div>
+
+                <div class="team-actions">
+                    <a href="{{ url_for('team_detail', team_name=team.name) }}" class="btn">
+                        👥 Состав
+                    </a>
+                    <a href="#" class="btn">✏️ Редактировать</a>
+                    <a href="#" class="btn text-danger">🗑️ Удалить</a>
+                </div>
+            </div>
+            {% else %}
+            <p>Нет сохранённых команд</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
