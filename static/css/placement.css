@@ -153,7 +153,7 @@
 
 .net-label {
     text-align: center;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     padding: 1px;
     background: #dfb9b6;
@@ -233,7 +233,7 @@
     border-radius: 6px;
     font-weight: bold;
     transition: all 0.2s;
-    min-height: 80px;
+    min-height: 100px;
 }
 
 .player-field.empty {
@@ -241,11 +241,13 @@
     color: #666;
     font-size: 40px;
     border: 2px dashed #999;
+    min-height: 100px;
 }
 
 .player-field.filled {
     color: #333;
     cursor: pointer;
+    min-height: 100px;
 }
 
 .player-field.filled:hover {
@@ -430,7 +432,7 @@
 
 .serving-field {
     flex: 1;
-    min-height: 80px;
+    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -625,4 +627,43 @@
 
 .attack-option-btn:hover {
     background: #e0e0e0;
+}
+
+.zone-button {
+    /* Основные стили */
+    min-height: 60px;              /* Увеличенная высота */
+    width: 100%;                   /* На всю ширину ячейки */
+    display: flex;
+    align-items: center;           /* Вертикальное выравнивание */
+    justify-content: center;       /* Горизонтальное выравнивание */
+    cursor: pointer;               /* Курсор-указатель */
+
+    /* Визуальные улучшения */
+    border: 1px solid #ccc;       /* Граница для четкости */
+    border-radius: 4px;           /* Скругленные углы */
+    background-color: #f8f8f8;    /* Светлый фон */
+    transition: all 0.2s ease;    /* Плавные анимации */
+
+    /* Текст */
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    padding: 5px;                 /* Отступы внутри кнопки */
+}
+
+.zone-button:hover {
+    background-color: #e0e0e0;    /* Эффект при наведении */
+    transform: scale(1.02);       /* Легкое увеличение */
+}
+
+.zone-button:active {
+    background-color: #d0d0d0;    /* Эффект нажатия */
+}
+
+@media (max-width: 768px) {
+    .zone-button {
+        min-height: 70px;    /* Еще больше для тапов */
+        font-size: 18px;
+    }
 }
