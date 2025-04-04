@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Начать матч</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .button {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Настройки матча</h1>
+        <form method="POST" action="{{ url_for('match') }}">
+            <div class="form-group">
+                <label>Город:
+                    <input type="text" name="city" value="Санкт-Петербург" required>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Адрес:
+                    <input type="text" name="address">
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Название соревнований:
+                    <input type="text" name="competition">
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Команда соперника:
+                    <input type="text" name="opponent" required>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Наша команда:
+                    <select name="our_team" required>
+                        {% for team in teams %}
+                            <option value="{{ team }}">{{ team }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+
+            <button type="submit" class="button">Начать матч</button>
+        </form>
+    </div>
+</body>
+</html>

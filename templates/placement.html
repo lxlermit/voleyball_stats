@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Расстановка игроков</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/placement.css') }}">
+</head>
+<body>
+    <div class="container">
+        {% include 'components/header.html' %}
+        {% include 'components/scoreboard.html' %}
+
+        <div class="sets-container">
+            <div class="set" id="set-1">1 партия: -:-</div>
+            <div class="set" id="set-2">2 партия: -:-</div>
+            <div class="set" id="set-3">3 партия: -:-</div>
+            <div class="set" id="set-4">4 партия: -:-</div>
+            <div class="set" id="set-5">5 партия: -:-</div>
+        </div>
+
+        {% include 'components/court.html' %}
+        {% include 'components/controls.html' %}
+
+        <div id="remove-player-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Отправить игрока на скамейку?</h2>
+                <p id="player-to-remove-info"></p>
+                <div class="modal-buttons">
+                    <button id="confirm-remove" class="button primary">Да</button>
+                    <button id="cancel-remove" class="button cancel">Нет</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="settings-modal" class="modal">
+            <div class="modal-content settings-modal-content">
+                <span class="close">&times;</span>
+                <h2>Настройки матча</h2>
+                <div class="settings-buttons-container">
+                    <button class="settings-modal-btn" id="clear-to-serve">Очистка до подачи</button>
+                    <button class="settings-modal-btn" id="undo-last-action">Отмена до предыдущей подачи</button>
+                    <button class="settings-modal-btn" id="save-match">Сохранить</button>
+                    <button class="settings-modal-btn warning-btn" id="end-set-from-settings">Конец партии</button>
+                    <button class="settings-modal-btn danger-btn" id="end-game-from-settings">Конец игры</button>
+                    <button class="settings-modal-btn" id="clear-players">Очистить игроков</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="{{ url_for('static', filename='js/placement.js') }}"></script>
+    </div>
+</body>
+</html>

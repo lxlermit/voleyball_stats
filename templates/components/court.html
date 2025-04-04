@@ -1,0 +1,143 @@
+<div class="court-area" id="court-area">
+    <div class="net-label">Сетка</div>
+
+    <div class="court-layout">
+        <div class="net-zone" data-zone="4" id="zone-4">
+            <div class="action-row">
+                <div class="action-field attack-plus">Удар +</div>
+                <div class="action-field attack">Удар</div>
+                <div class="action-field attack-minus">Удар -</div>
+            </div>
+            <div class="action-row">
+                <div class="action-field block-plus">Блок +</div>
+                <div class="action-field block">Блок</div>
+                <div class="action-field block-minus">Блок -</div>
+            </div>
+            <div class="action-row">
+                <div class="action-field pass">Пас</div>
+                <div class="action-field defense">Защита</div>
+                <div class="action-field touch-minus">Касание -</div>
+            </div>
+            <div class="receive-row">
+                <div class="action-field receive-plus receive-field">Прием +</div>
+                <div class="action-field receive-minus receive-field">Прием -</div>
+            </div>
+            <div class="player-field empty" id="player-4" data-zone="4">Зона 4</div>
+        </div>
+
+        <div class="net-zone" data-zone="3" id="zone-3">
+            <div class="action-row">
+                <div class="action-field attack-plus">Удар +</div>
+                <div class="action-field attack">Удар</div>
+                <div class="action-field attack-minus">Удар -</div>
+            </div>
+            <div class="action-row">
+                <div class="action-field block-plus">Блок +</div>
+                <div class="action-field block">Блок</div>
+                <div class="action-field block-minus">Блок -</div>
+            </div>
+            <div class="action-row">
+                <div class="action-field pass">Пас</div>
+                <div class="action-field defense">Защита</div>
+                <div class="action-field touch-minus">Касание -</div>
+            </div>
+            <div class="receive-row">
+                <div class="action-field receive-plus receive-field">Прием +</div>
+                <div class="action-field receive-minus receive-field">Прием -</div>
+            </div>
+            <div class="player-field empty" id="player-3" data-zone="3">Зона 3</div>
+        </div>
+
+        <div class="net-zone" data-zone="2" id="zone-2">
+            <div class="action-row">
+                <div class="action-field attack-plus">Удар +</div>
+                <div class="action-field attack">Удар</div>
+                <div class="action-field attack-minus">Удар -</div>
+            </div>
+            <div class="action-row">
+                <div class="action-field block-plus">Блок +</div>
+                <div class="action-field block">Блок</div>
+                <div class="action-field block-minus">Блок -</div>
+            </div>
+            <div class="action-row">
+                <div class="action-field pass">Пас</div>
+                <div class="action-field defense">Защита</div>
+                <div class="action-field touch-minus">Касание -</div>
+            </div>
+            <div class="receive-row">
+                <div class="action-field receive-plus receive-field">Прием +</div>
+                <div class="action-field receive-minus receive-field">Прием -</div>
+            </div>
+            <div class="player-field empty" id="player-2" data-zone="2">Зона 2</div>
+        </div>
+
+        <div class="back-zone" data-zone="5" id="zone-5">
+            <div class="action-row">
+                <div class="action-field attack-plus">Удар +</div>
+                <div class="action-field attack">Удар</div>
+                <div class="action-field attack-minus">Удар -</div>
+            </div>
+            <div class="action-row">
+                <div class="action-field pass">Пас</div>
+                <div class="action-field defense">Защита</div>
+                <div class="action-field touch-minus">Касание -</div>
+            </div>
+            <div class="receive-row">
+                <div class="action-field receive-plus receive-field">Прием +</div>
+                <div class="action-field receive-minus receive-field">Прием -</div>
+            </div>
+            <div class="player-field empty" id="player-5" data-zone="5">Зона 5</div>
+        </div>
+
+        <div class="back-zone" data-zone="6" id="zone-6">
+            <div class="action-row">
+                <div class="action-field attack-plus">Удар +</div>
+                <div class="action-field attack">Удар</div>
+                <div class="action-field attack-minus">Удар -</div>
+            </div>
+            <div class="action-row">
+                <div class="action-field pass">Пас</div>
+                <div class="action-field defense">Защита</div>
+                <div class="action-field touch-minus">Касание -</div>
+            </div>
+            <div class="receive-row">
+                <div class="action-field receive-plus receive-field">Прием +</div>
+                <div class="action-field receive-minus receive-field">Прием -</div>
+            </div>
+            <div class="player-field empty" id="player-6" data-zone="6">Зона 6</div>
+        </div>
+
+        <div class="back-zone" data-zone="1" id="zone-1">
+            <div class="action-row">
+                <div class="action-field attack-plus">Удар +</div>
+                <div class="action-field attack">Удар</div>
+                <div class="action-field attack-minus">Удар -</div>
+            </div>
+            <div class="action-row">
+                <div class="action-field pass">Пас</div>
+                <div class="action-field defense">Защита</div>
+                <div class="action-field touch-minus">Касание -</div>
+            </div>
+            <div class="receive-row">
+                <div class="action-field receive-plus receive-field">Прием +</div>
+                <div class="action-field receive-minus receive-field">Прием -</div>
+            </div>
+            <!-- Блок подачи будет добавляться динамически через JS -->
+            <div class="player-field empty" id="player-1" data-zone="1">Зона 1</div>
+        </div>
+    </div>
+</div>
+
+
+<div id="attack-modal" class="modal">
+    <div class="modal-content attack-modal-content">
+        <span class="close">&times;</span>
+        <h2>Дополнительные действия для атаки</h2>
+        <div class="attack-buttons-container">
+            <button class="attack-option-btn" id="attack-cross">По диагонали</button>
+            <button class="attack-option-btn" id="attack-line">По линии</button>
+            <button class="attack-option-btn" id="attack-tip">Скидка</button>
+            <button class="attack-option-btn" id="attack-block-out">В аут с блока</button>
+        </div>
+    </div>
+</div>

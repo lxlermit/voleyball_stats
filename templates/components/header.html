@@ -1,0 +1,14 @@
+<div class="players-header-container">
+    <div class="players-header" id="players-header">
+        {% for player in team %}
+        <div class="player-tag" draggable="true"
+             data-number="{{ player.number }}"
+             data-last-name="{{ player.last_name }}"
+             data-first-name="{{ player.first_name|first }}."
+             style="background: {{ player.color }};">
+            {{ player.number }}. {{ player.last_name }} {{ player.first_name|first }}.
+        </div>
+        {% endfor %}
+    </div>
+    <button id="settings-btn" class="settings-icon-btn">⚙️</button>
+</div>

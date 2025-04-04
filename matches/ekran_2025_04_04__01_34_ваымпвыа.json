@@ -1,0 +1,1516 @@
+{
+    "meta": {
+        "date": "2025-04-04 01:34:06",
+        "filename": "ekran_2025_04_04__01_34_ваымпвыа.json",
+        "city": "Санкт-Петербург",
+        "address": "",
+        "competition": "",
+        "our_team": "ekran",
+        "opponent": "ваымпвыа",
+        "status": "completed",
+        "team_lineup": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "18",
+            "19"
+        ],
+        "end_time": "2025-04-04 01:34:37"
+    },
+    "sets": {
+        "set_1": [
+            3,
+            2
+        ],
+        "set_2": [
+            1,
+            4
+        ]
+    },
+    "players_stats": {
+        "1": {
+            "player_info": {
+                "number": "1",
+                "last_name": "Максимов",
+                "first_name": "Гоша",
+                "role": "Первый темп",
+                "color": "#BA55D3"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "2": {
+            "player_info": {
+                "number": "2",
+                "last_name": "Сампо",
+                "first_name": "Сергей",
+                "role": "Доигровщик",
+                "color": "#4682B4"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "3": {
+            "player_info": {
+                "number": "3",
+                "last_name": "Наумчик",
+                "first_name": "Егор",
+                "role": "Доигровщик",
+                "color": "#4682B4"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "4": {
+            "player_info": {
+                "number": "4",
+                "last_name": "Катков",
+                "first_name": "Артем",
+                "role": "Первый темп",
+                "color": "#BA55D3"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "5": {
+            "player_info": {
+                "number": "5",
+                "last_name": "Негодайло",
+                "first_name": "Саша",
+                "role": "Пасующий",
+                "color": "#F3FF33"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "7": {
+            "player_info": {
+                "number": "7",
+                "last_name": "Гунько",
+                "first_name": "Рома",
+                "role": "Пасующий",
+                "color": "#F3FF33"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "8": {
+            "player_info": {
+                "number": "8",
+                "last_name": "Кислухин",
+                "first_name": "Андрей",
+                "role": "Доигровщик",
+                "color": "#4682B4"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "9": {
+            "player_info": {
+                "number": "9",
+                "last_name": "Иванов",
+                "first_name": "Миша",
+                "role": "Пасующий",
+                "color": "#F3FF33"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "10": {
+            "player_info": {
+                "number": "10",
+                "last_name": "Кабак",
+                "first_name": "Миша",
+                "role": "Пасующий",
+                "color": "#F3FF33"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "11": {
+            "player_info": {
+                "number": "11",
+                "last_name": "Кутынко",
+                "first_name": "Максим",
+                "role": "Первый темп",
+                "color": "#BA55D3"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "12": {
+            "player_info": {
+                "number": "12",
+                "last_name": "Буреев",
+                "first_name": "Никита",
+                "role": "Доигровщик",
+                "color": "#4682B4"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "13": {
+            "player_info": {
+                "number": "13",
+                "last_name": "Озолин",
+                "first_name": "Кирилл",
+                "role": "Либеро",
+                "color": "#228B22"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "14": {
+            "player_info": {
+                "number": "14",
+                "last_name": "Воронцов",
+                "first_name": "Слава",
+                "role": "Доигровщик",
+                "color": "#4682B4"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "15": {
+            "player_info": {
+                "number": "15",
+                "last_name": "Авдеев",
+                "first_name": "Миша",
+                "role": "Первый темп",
+                "color": "#33FFF3"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "16": {
+            "player_info": {
+                "number": "16",
+                "last_name": "Бычков",
+                "first_name": "Дима",
+                "role": "Доигровщик",
+                "color": "#4682B4"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "18": {
+            "player_info": {
+                "number": "18",
+                "last_name": "Горошко",
+                "first_name": "Максим",
+                "role": "Пасующий",
+                "color": "#F3FF33"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        },
+        "19": {
+            "player_info": {
+                "number": "19",
+                "last_name": "Храповицкий",
+                "first_name": "Арсений",
+                "role": "Доигровщик",
+                "color": "#4682B4"
+            },
+            "actions": {
+                "points_on_court": 0,
+                "total_points": {
+                    "win_points": 0,
+                    "lose_points": 0,
+                    "win_minus_lose": 0,
+                    "win_divide_lose": 0
+                },
+                "serving": {
+                    "total": 0,
+                    "ace": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "ace_minus_error_divide_total": 0,
+                    "good_plus_2ace_divide_2error_plus_bad": 0
+                },
+                "block": {
+                    "win": 0,
+                    "softened": 0,
+                    "double_block": 0,
+                    "error": 0
+                },
+                "attack": {
+                    "win_total": 0,
+                    "win_kill": 0,
+                    "win_tip": 0,
+                    "no_point": 0,
+                    "shot_good": 0,
+                    "shot_normal": 0,
+                    "shot_bad": 0,
+                    "tip_good": 0,
+                    "tip_bad": 0,
+                    "hands_below_good": 0,
+                    "hands_below_normal": 0,
+                    "hands_below_bad": 0,
+                    "error_total": 0,
+                    "error_kill": 0,
+                    "error_tip": 0,
+                    "win_plus_good_divide_bad_plus_error": 0,
+                    "win_minus_error_divide_total": 0
+                },
+                "set_assist": {
+                    "total": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error": 0,
+                    "error_divide_total": 0,
+                    "good_divide_bad_plus_error": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "serve_reception": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "good_divide_total": 0,
+                    "error_divide_total": 0,
+                    "bad_plus_error_divide_total": 0,
+                    "normal_plus_2good_divide_2bad_plus_3error": 0
+                },
+                "dig": {
+                    "total": 0,
+                    "error": 0,
+                    "good": 0,
+                    "normal": 0,
+                    "bad": 0,
+                    "error_divide_total": 0,
+                    "error_plus_bad_divide_total": 0,
+                    "normal_plus_2good_divide_3error_plus_2bad": 0
+                }
+            },
+            "time_played": 0,
+            "rotations": []
+        }
+    },
+    "match_events": [],
+    "team_stats": {
+        "total_points": 0,
+        "attack_points": 0,
+        "block_points": 0,
+        "serve_points": 0,
+        "opponent_errors": 0,
+        "timeouts_used": 0,
+        "substitutions_used": 0
+    }
+}

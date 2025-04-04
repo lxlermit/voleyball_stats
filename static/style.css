@@ -1,0 +1,506 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.warning {
+    color: #dc3545;
+    padding: 15px;
+    border: 1px solid #dc3545;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.team-list {
+    list-style: none;
+    padding: 0;
+}
+
+.team-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.team-list li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* Формы */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Стили для страницы редактирования команд */
+.team-list-section {
+    margin-bottom: 40px;
+}
+
+.team-list {
+    list-style: none;
+    padding: 0;
+}
+
+.team-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 8px;
+}
+
+.team-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-btn {
+    background: #28a745;
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+.create-team-section {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #ddd;
+}
+
+#create-team-form {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 5px;
+}
+
+.player-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background: white;
+    position: relative;
+}
+
+.delete-player-btn {
+    background: #dc3545;
+    margin-top: 10px;
+}
+
+.success-btn {
+    background: #28a745;
+}
+
+.position-selectors {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.position-selectors label {
+    flex: 1;
+}
+
+/* Расстановка игроков */
+.players-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.player-tag {
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.scoreboard {
+    text-align: center;
+    font-size: 2em;
+    margin: 20px 0;
+}
+
+.our-team {
+    color: green;
+    font-weight: bold;
+}
+
+.opponent-team {
+    color: red;
+    font-weight: bold;
+}
+
+.score {
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.serve-indicator {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.volleyball-court {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.mirrored {
+    transform: scaleX(-1);
+}
+
+.zone {
+    border: 2px solid #333;
+    padding: 20px;
+    text-align: center;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.mirror-btn {
+    background: #666;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Палитра цветов */
+.color-palette {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.color-option.selected {
+    border-color: #333;
+    transform: scale(1.1);
+}
+
+/* Карточка игрока */
+.player-card {
+    border: 1px solid #ddd;
+    border-left: 5px solid #FF5733;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: white;
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.player-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.player-details {
+    display: flex;
+    gap: 15px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.small-btn {
+    padding: 5px 8px;
+    font-size: 0.8em;
+    min-width: auto;
+}
+
+.duplicate-number {
+    border: 2px solid #ff0000 !important;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Базовые стили для placement.html */
+.player-tag {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+    cursor: grab;
+}
+
+.court-zone {
+    position: relative;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.mirrored .zone-1 { grid-area: 1 / 3; }
+.mirrored .zone-2 { grid-area: 2 / 3; }
+.mirrored .zone-3 { grid-area: 2 / 2; }
+.mirrored .zone-4 { grid-area: 2 / 1; }
+.mirrored .zone-5 { grid-area: 1 / 1; }
+.mirrored .zone-6 { grid-area: 1 / 2; }
+
+.point-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Анимация при перетаскивании */
+.court-zone.hovered {
+    background-color: #e0e0e0;
+    transform: scale(1.02);
+}
+
+/* Стили для полос "Сетка" и "Подача" */
+.court-title {
+    background: linear-gradient(to right, #f0f0f0, #e0e0e0, #f0f0f0);
+    text-align: center;
+    padding: 8px 0;
+    margin: 5px -10px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+/* Анимация при перетаскивании */
+.court-zone.drag-over {
+    background-color: #e0e0e0 !important;
+    transform: scale(1.02);
+    transition: all 0.2s;
+}
+
+/* Стили для кнопок очков */
+#our-point, #opponent-point {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#our-point:hover, #opponent-point:hover {
+    transform: scale(1.05);
+}
+
+/* Новые стили для блока счета */
+.score-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f8f8;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.point-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+
+.our-point {
+    background: green;
+    color: white;
+}
+
+.opponent-point {
+    background: red;
+    color: white;
+}
+
+.team-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    flex: 1;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.our-team {
+    color: green;
+}
+
+.opponent-team {
+    color: red;
+}
+
+.score-display {
+    font-size: 2em;
+    font-weight: bold;
+    min-width: 120px;
+    text-align: center;
+}
+
+/* Стили для блока партий */
+.sets-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 8px;
+}
+
+.set {
+    padding: 8px 12px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+/* Стили для блока управления */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.warning-btn {
+    background: #ffc107;
+    color: #212529;
+}
+
+.danger-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.cancel-btn {
+    background: #6c757d;
+    color: white;
+}
+
+.settings-btn {
+    background: #333;
+    color: white;
+}
+
+.action-row, .receive-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.action-field {
+    flex: 1;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.action-field:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
