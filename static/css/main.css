@@ -7,9 +7,12 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    width: 100%;
+    min-width: 778px;  /* Не уже 778px */
+    max-width: 1200px; /* Но не шире 1200px */
     margin: 0 auto;
-    padding: 20px;
+    padding: 2px;
+    box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
 }
 
 .button {

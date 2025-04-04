@@ -433,7 +433,7 @@ function initSettingsModal() {
             if (response.ok) {
                 const setElement = document.getElementById(`set-${matchState.currentSet}`);
                 if (setElement) {
-                    setElement.textContent = `${matchState.currentSet} партия: ${matchState.ourScore}:${matchState.opponentScore}`;
+                    setElement.textContent = `${matchState.ourScore}:${matchState.opponentScore}`;
                 }
 
                 matchState.ourScore = 0;
