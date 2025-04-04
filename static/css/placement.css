@@ -194,7 +194,7 @@
 
 .action-field {
     flex: 1;
-    min-height: 120px;
+    min-height: 130px;
     min-width: 60px;
     display: flex;
     align-items: center;
@@ -233,7 +233,7 @@
     border-radius: 6px;
     font-weight: bold;
     transition: all 0.2s;
-    min-height: 70px;
+    min-height: 80px;
 }
 
 .player-field.empty {
@@ -430,7 +430,7 @@
 
 .serving-field {
     flex: 1;
-    min-height: 70px;
+    min-height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -594,23 +594,6 @@
     background: #DC143C;
     color: white;
 }
-
-
-/* Контейнер для заголовка игроков и кнопки настроек */
-.players-header-container {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 2px;
-    padding: 2px;
-    background: #f5f5f5;
-    border-radius: 8px;
-    align-items: center;
-    border: 1px solid #ddd;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-
 
 /* Стили для модального окна атак */
 .attack-modal-content {
