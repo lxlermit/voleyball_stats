@@ -108,7 +108,7 @@ body {
 }
 
 /* Цветовые акценты для карточек */
-.new-match { border-top: 4px solid #3498db; }
-.view-stats { border-top: 4px solid #2ecc71; }
-.manage-players { border-top: 4px solid #e74c3c; }
-.settings { border-top: 4px solid #9b59b6; }
+.new-match { border-top: 4px solid #3498db; }       /* Синий */
+.view-stats { border-top: 4px solid #2ecc71; }      /* Зеленый */
+.manage-teams { border-top: 4px solid #e74c3c; }    /* Фиолетовый */
+.settings { border-top: 4px solid #9b59b6; }        /* Красный */
