@@ -49,23 +49,6 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.15);
 }
 
-/* Адаптация для мобильных */
-@media (max-width: 768px) {
-    .players-header {
-        padding: 10px;
-        gap: 8px;
-    }
-
-    .player-tag {
-        padding: 6px 12px 6px 24px;
-        font-size: 0.85em;
-    }
-
-    .player-tag::before {
-        left: 6px;
-    }
-}
-
 /* Стили для блока счета */
 .score-header {
     display: flex;
@@ -152,9 +135,10 @@
 }
 
 .net-label {
+    width: 100%;
     text-align: center;
     font-size: 30px;
-    font-weight: bold;
+    font-weight: bold;  /* Жирная надпись */
     padding: 1px;
     background: #dfb9b6;
     border-radius: 5px;
@@ -163,10 +147,13 @@
 }
 
 .court-layout {
+    width: 100%;
+
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2px;
     order: 2;
+
 }
 
 .net-zone, .back-zone {
@@ -176,6 +163,7 @@
     background: #f0f0f0;
     border-radius: 8px;
     border: 2px solid #ccc;
+
 }
 
 .net-zone {
@@ -190,6 +178,7 @@
     display: flex;
     gap: 1px;
     margin-bottom: 1px;
+    max-width: 100%;
 }
 
 .action-field {
@@ -211,6 +200,15 @@
 .action-field:hover {
     transform: scale(1.02);
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.court-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1198px; /* Или ваше значение */
+            margin: 0 auto;
 }
 
 /* Цвета кнопок действий */
@@ -344,9 +342,12 @@
     color: blue;
     display: block;        /* Чтобы кнопка занимала всю ширину */
     margin: 20px auto;     /* Отступ сверху и центрирование */
-    padding: 10px 20px;    /* Размеры кнопки */
+    padding: 15px 30px;    /* Размеры кнопки */
     text-align: center;    /* Текст по центру */
     order: 3;             /* Если используется flex/grid, будет после court-layout (order:2) */
+    font-size: 1.2em;
+    width: auto;
+    min-width: 200px;
 }
 
 /* Эффекты при наведении */
@@ -358,24 +359,6 @@
 .control-button:active {
     transform: translateY(0);
     box-shadow: none;
-}
-
-/* Адаптация для мобильных */
-@media (max-width: 768px) {
-    .game-controls {
-        justify-content: flex-start;
-        padding: 10px;
-    }
-
-    .control-button {
-        min-width: 140px;
-        padding: 10px 15px;
-        font-size: 0.9em;
-    }
-
-    .court-layout {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* Модальное окно */
@@ -637,6 +620,7 @@
     align-items: center;           /* Вертикальное выравнивание */
     justify-content: center;       /* Горизонтальное выравнивание */
     cursor: pointer;               /* Курсор-указатель */
+    box-sizing: border-box;
 
     /* Визуальные улучшения */
     border: 1px solid #ccc;       /* Граница для четкости */
@@ -661,9 +645,139 @@
     background-color: #d0d0d0;    /* Эффект нажатия */
 }
 
-@media (max-width: 768px) {
+.additional-buttons {
+    width: 100%;
+    /* max-width: 800px; /* Должно совпадать с court-layout */
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    background-color: #e7d7d7;
+}
+
+
+/* Адаптация для мобильных устройств*/
+
+/* Мобильные телефоны (до 600px) */
+@media (max-width: 600px) {
+    .game-controls {
+        justify-content: flex-start;
+        padding: 10px;
+    }
+
+    .control-button {
+        min-width: 100px;
+        padding: 1px 1px;
+        font-size: 0.9em;
+    }
+
+    .court-layout {
+        grid-template-columns: repeat(3, 1fr);;     /* 3 в ряд */
+    }
+    .players-header {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .player-tag {
+        padding: 6px 12px 6px 24px;
+        font-size: 0.85em;
+    }
+
+    .player-tag::before {
+        left: 6px;
+    }
     .zone-button {
         min-height: 70px;    /* Еще больше для тапов */
         font-size: 18px;
     }
 }
+
+/* Планшеты (601-1023px) */
+/* мой телефон и планшет*/
+@media screen and (min-width: 601px) and (max-width: 1023px) {
+    .court-container {
+        max-width: 100%
+        }
+    }
+    .court-layout {
+        grid-template-columns: repeat(3, 1fr);;     /* 3 в ряд */
+        max-width: 100%
+    }
+
+    .game-controls {
+        justify-content: flex-start;
+        padding: 10px;
+    }
+
+    .control-button {
+        min-width: 100px;
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .players-header {
+        padding: 1px;
+        gap: 2px;
+    }
+
+    .player-tag {
+        padding: 6px 12px 6px 24px;
+        font-size: 0.85em;
+    }
+
+    .player-tag::before {
+        left: 6px;
+    }
+    .zone-button {
+        min-height: 70px;    /* Еще больше для тапов */
+        font-size: 18px;
+    }
+}
+
+/* Десктопы (min-width: 1024) and (max-width: 1800px) */
+@media (min-width: 1025px) and (max-width: 1800px){
+    .action-field {
+        font-size: 40px;
+    }
+    .court-container {
+        max-width: 770px
+    }
+
+    .court-layout {
+        grid-template-columns: repeat(3, 1fr);;     /* 3 в ряд */
+        max-width: 770px
+    }
+
+    .game-controls {
+        justify-content: flex-start;
+        padding: 10px;
+    }
+
+    .control-button {
+        min-width: 140px;
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+
+    .players-header {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .player-tag {
+        padding: 6px 12px 6px 24px;
+        font-size: 0.85em;
+    }
+
+    .player-tag::before {
+        left: 6px;
+    }
+    .zone-button {
+        min-height: 70px;    /* Еще больше для тапов */
+        font-size: 18px;
+    }
+}
+
+
+

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta content="width=device-width, initial-scale=1" name="vievport" />
     <title>Расстановка игроков</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/placement.css') }}">
 </head>
 <body>
     <div class="container">
-        {% include 'components/scoreboard.html' %}
+        {% include 'placement/scoreboard.html' %}
 
         <div class="sets-container">
             <div class="set" id="set-1">1 СЕТ</div>
@@ -17,8 +18,9 @@
             <div class="set" id="set-5">5 СЕТ</div>
         </div>
 
-        {% include 'components/court.html' %}
-        {% include 'components/controls.html' %}
+        {% include 'placement/court.html' %}
+
+        {% include 'placement/additional_buttons.html' %}
 
         <div id="remove-player-modal" class="modal">
             <div class="modal-content">
@@ -46,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <button id="settings-btn" class="settings-icon-btn">⚙️</button>
+
         <script src="{{ url_for('static', filename='js/placement.js') }}"></script>
     </div>
 </body>
