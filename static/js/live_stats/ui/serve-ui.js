@@ -4,8 +4,8 @@ import { recordPlayerAction } from '../features/actions.js';
 export function updateServeUI() {
     const serveButton = document.getElementById('serve-toggle-btn');
     if (serveButton) {
-        serveButton.textContent = appState.isOurServe ? '🎾 Мы подаем' : '🎾 Соперник подает';
-        serveButton.style.backgroundColor = appState.isOurServe ? '#4CAF50' : '#F44336';
+        serveButton.textContent = appState.isOurServe ? '🎾 Соперник подает' : '🎾 Мы подаем';
+        serveButton.style.backgroundColor = appState.isOurServe ? '#F44336' : '#4CAF50';
     }
 }
 

@@ -4,12 +4,30 @@ import os
 from datetime import datetime
 from werkzeug.utils import secure_filename
 
+from models import get_team_files, save_match_data, load_team_data
+
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
+# === Лимиты для запросов ===
+MAX_TEAM_NAME_LENGTH = 50  # Максимальная длина имени команды
+MAX_PLAYERS_PER_TEAM = 20  # Максимальное количество игроков
+# ==========================
+
 
 def init_routes(app):
 
     # Сохраняем ссылку на app для доступа в функциях
     global flask_app
     flask_app = app
+
+    # Инициализация путей
+    app.teams_dir = 'teams'  # относительный путь к папке с командами
+    app.matches_dir = 'matches'  # относительный путь к папке с матчами
+
+    # Создаем папки при их отсутствии
+    os.makedirs(app.teams_dir, exist_ok=True)
+    os.makedirs(app.matches_dir, exist_ok=True)
 
     @app.route('/')
     def index():
@@ -39,27 +57,50 @@ def init_routes(app):
 
 
     @app.route('/teams')
+    @app.route('/teams')
     def teams():
-        teams = []
-        for filename in get_team_files():
-            with open(os.path.join(app.teams_dir, filename), 'r', encoding='utf-8') as f:
-                team_data = json.load(f)
-                teams.append({
-                    'name': team_data.get('team', filename[:-5]),
-                    'filename': filename,
-                    'player_count': len(team_data.get('players', []))
-                })
-        return render_template('teams.html', teams=teams)
+        try:
+            # Проверяем существование директории
+            if not os.path.exists(app.teams_dir):
+                os.makedirs(app.teams_dir)
+                return render_template('teams.html', teams=[])
+
+            # Получаем список файлов команд
+            team_files = [f for f in os.listdir(app.teams_dir)
+                          if f.endswith('.json') and os.path.isfile(os.path.join(app.teams_dir, f))]
+
+            teams = []
+            for filename in team_files:
+                try:
+                    with open(os.path.join(app.teams_dir, filename), 'r', encoding='utf-8') as f:
+                        team_data = json.load(f)
+                        teams.append({
+                            'name': team_data.get('team', filename[:-5]),
+                            'filename': filename,
+                            'player_count': len(team_data.get('players', []))
+                        })
+                except json.JSONDecodeError:
+                    continue  # Пропускаем битые JSON-файлы
+
+            return render_template('teams.html', teams=teams)
+
+        except Exception as e:
+            flash(f'Ошибка загрузки команд: {str(e)}', 'error')
+            return render_template('teams.html', teams=[])
 
     @app.route('/team/<team_name>')
     def team_detail(team_name):
-        filename = f"{team_name}.json"
-        if filename not in get_team_files():
+        # Загружаем данные с обработкой ошибок
+        team_result = load_team_data(team_name, app.teams_dir)
+
+        # Обработка ошибок
+        if team_result['status'] != 'success':
+            flash(team_result.get('message', 'Команда не найдена'), 'error')
             abort(404)
 
-        with open(os.path.join(app.teams_dir, filename), 'r', encoding='utf-8') as f:
-            team_data = json.load(f)
+        team_data = team_result['data']
 
+        # Группировка игроков по амплуа
         players_by_role = {}
         for player in team_data.get('players', []):
             role = player.get('role', 'Без амплуа')
@@ -69,7 +110,8 @@ def init_routes(app):
 
         return render_template('team_detail.html',
                                team=team_data,
-                               players_by_role=players_by_role)
+                               players_by_role=players_by_role,
+                               team_name=team_name)
 
     @app.route('/create_team', methods=['GET'])
     def show_create_team():
@@ -161,6 +203,12 @@ def init_routes(app):
     @app.route('/match', methods=['GET', 'POST'])
     def match():
         if request.method == 'POST':
+            # Проверка обязательных полей
+            if 'our_team' not in request.form or not request.form['our_team']:
+                flash('Не выбрана наша команда!', 'error')
+                return redirect(url_for('match'))
+
+            # Сохраняем данные матча в сессию
             session['match_data'] = {
                 'city': request.form.get('city', 'Санкт-Петербург'),
                 'address': request.form.get('address', ''),
@@ -172,29 +220,50 @@ def init_routes(app):
             team_name = request.form['our_team']
             team_file = os.path.join(app.teams_dir, f"{team_name}.json")
 
-            with open(team_file, 'r', encoding='utf-8') as f:
-                team_data = json.load(f)
+            # Загружаем данные команды
+            try:
+                with open(team_file, 'r', encoding='utf-8') as f:
+                    team_data = json.load(f)
+            except Exception as e:
+                flash(f'Ошибка загрузки команды: {str(e)}', 'error')
+                return redirect(url_for('match'))
 
+            # Подготавливаем структуру для статистики игроков
             players_stats = {}
             for player in team_data['players']:
                 players_stats[player['number']] = {
                     'player_info': player,
                     'actions': {
-                        # ... (полная копия вашей структуры статистики)
+                        'serving': {'ace': 0, 'good': 0, 'bad': 0, 'error': 0, 'total': 0},
+                        'attack': {'win_total': 0, 'shot_good': 0, 'shot_bad': 0, 'no_point': 0, 'error_total': 0},
+                        'block': {'win': 0, 'cover': 0, 'error': 0, 'total': 0},
+                        'receive': {'excellent': 0, 'good': 0, 'bad': 0, 'error': 0, 'total': 0},
+                        'set': {'excellent': 0, 'good': 0, 'bad': 0, 'error': 0, 'total': 0},
+                        'defence': {'excellent': 0, 'good': 0, 'bad': 0, 'error': 0, 'total': 0}
                     },
                     'time_played': 0,
                     'rotations': []
                 }
 
+            # Генерируем безопасное имя файла для матча
             now = datetime.now()
+            opponent_name = request.form.get('opponent', 'Команда соперника')
+
+            # Очищаем имя от недопустимых символов
+            def sanitize_filename(name):
+                keepchars = (' ', '.', '_')
+                return "".join(c for c in name if c.isalnum() or c in keepchars).rstrip()
+
+            safe_opponent = sanitize_filename(opponent_name)
             filename = (
                 f"{team_name}_{now.strftime('%Y_%m_%d__%H_%M')}_"
-                f"{request.form.get('opponent', 'Команда соперника')}.json"
-                .replace(" ", "_").replace("/", "").replace("\\", "")
-                .replace(":", "").replace("*", "").replace("?", "")
-                .replace('"', "").replace("<", "").replace(">", "").replace("|", "")
-            )
+                f"{safe_opponent}.json"
+            ).replace(" ", "_")
 
+            # Создаем директорию matches если её нет
+            os.makedirs(app.matches_dir, exist_ok=True)
+
+            # Формируем структуру данных матча
             match_stats = {
                 "meta": {
                     "date": now.strftime("%Y-%m-%d %H:%M:%S"),
@@ -203,7 +272,7 @@ def init_routes(app):
                     "address": request.form.get('address', ''),
                     "competition": request.form.get('competition', ''),
                     "our_team": team_name,
-                    "opponent": request.form.get('opponent', 'Команда соперника'),
+                    "opponent": opponent_name,
                     "status": "ongoing",
                     "team_lineup": [p['number'] for p in team_data['players']]
                 },
@@ -221,20 +290,35 @@ def init_routes(app):
                 }
             }
 
-            os.makedirs(app.matches_dir, exist_ok=True)
-            filepath = os.path.join(app.matches_dir, filename)
-            with open(filepath, 'w', encoding='utf-8') as f:
-                json.dump(match_stats, f, ensure_ascii=False, indent=4)
+            # Сохраняем данные матча
+            try:
+                filepath = os.path.join(app.matches_dir, filename)
+                with open(filepath, 'w', encoding='utf-8') as f:
+                    json.dump(match_stats, f, ensure_ascii=False, indent=4)
+            except Exception as e:
+                flash(f'Ошибка при создании файла матча: {str(e)}', 'error')
+                return redirect(url_for('match'))
 
             session['current_match_file'] = filename
             return redirect(url_for('live_stats'))
 
-        teams = [f.replace('.json', '') for f in os.listdir('teams') if f.endswith('.json')]
+        # GET запрос - отображаем форму
+        teams_result = get_team_files(app.teams_dir)
+
+        if teams_result['status'] != 'success':
+            flash(f"Ошибка загрузки команд: {teams_result.get('message', 'Неизвестная ошибка')}", 'error')
+            return redirect(url_for('index'))
+
+        teams = [f.replace('.json', '') for f in teams_result['files']]
+
         if not teams:
             flash('Сначала создайте команду!', 'error')
             return redirect(url_for('index'))
 
-        return render_template('match.html', teams=teams)
+        return render_template('pre_game_setup.html',
+                               teams=teams,
+                               default_city='Санкт-Петербург',
+                               default_opponent='Команда соперника')
 
     @app.route('/stats')
     def stats():
@@ -247,7 +331,7 @@ def init_routes(app):
 
     @app.route('/settings')
     def settings():
-        return render_template('settings.html')
+        return render_template('app_settings.html')
 
     @app.route('/add_team', methods=['GET', 'POST'])
     def add_team():
@@ -257,7 +341,7 @@ def init_routes(app):
                 return render_template('add_team.html', error="Введите название команды")
 
             filename = f"{team_name}.json"
-            if filename in get_team_files():
+            if filename in get_team_files(app.teams_dir):
                 return render_template('add_team.html', error="Команда с таким именем уже существует")
 
             new_team = {
@@ -359,35 +443,50 @@ def init_routes(app):
     @app.route('/save_set', methods=['POST'])
     def save_set():
         try:
-            data = request.json
+            logging.debug(f"Attempting to save to: {os.path.abspath(app.matches_dir)}")
+            # Получаем данные из запроса
+            data = request.get_json()
+            if not data:
+                return jsonify({'status': 'error', 'message': 'No data provided'}), 400
+
             filename = session.get('current_match_file')
             if not filename:
                 return jsonify({'status': 'error', 'message': 'No active match'}), 400
 
+            # Создаем директорию matches, если её нет
+            os.makedirs(app.matches_dir, exist_ok=True)
+
             filepath = os.path.join(app.matches_dir, filename)
 
-            with open(filepath, 'r+', encoding='utf-8') as f:
-                stats = json.load(f)
-                set_num = data['set_number']
-                stats['sets'][f"set_{set_num}"] = [
-                    data['result']['our'],
-                    data['result']['opponent']
-                ]
+            # Читаем текущие данные матча
+            with open(filepath, 'r', encoding='utf-8') as f:
+                match_data = json.load(f)
 
-                if data.get('end_match'):
-                    stats['meta']['status'] = 'completed'
-                    stats['meta']['end_time'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    session.pop('current_match_file', None)
+            # Обновляем данные сета
+            set_num = data.get('set_number')
+            if not set_num:
+                return jsonify({'status': 'error', 'message': 'Set number not provided'}), 400
 
-                f.seek(0)
-                json.dump(stats, f, ensure_ascii=False, indent=4)
-                f.truncate()
+            match_data['sets'][f"set_{set_num}"] = [
+                data.get('result', {}).get('our', 0),
+                data.get('result', {}).get('opponent', 0)
+            ]
+
+            # Если матч завершён
+            if data.get('end_match'):
+                match_data['meta']['status'] = 'completed'
+                match_data['meta']['end_time'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                session.pop('current_match_file', None)
+
+            # Записываем обновлённые данные
+            with open(filepath, 'w', encoding='utf-8') as f:
+                json.dump(match_data, f, ensure_ascii=False, indent=4)
 
             return jsonify({'status': 'success'})
 
+        except json.JSONDecodeError as e:
+            return jsonify({'status': 'error', 'message': f'JSON decode error: {str(e)}'}), 500
+        except IOError as e:
+            return jsonify({'status': 'error', 'message': f'File operation failed: {str(e)}'}), 500
         except Exception as e:
-            return jsonify({'status': 'error', 'message': str(e)}), 500
-
-    def get_team_files():
-        os.makedirs('teams', exist_ok=True)
-        return [f for f in os.listdir('teams') if f.endswith('.json')]
+            return jsonify({'status': 'error', 'message': f'Unexpected error: {str(e)}'}), 500
