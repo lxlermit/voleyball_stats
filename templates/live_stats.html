@@ -4,23 +4,17 @@
     <meta content="width=device-width, initial-scale=1" name="vievport" />
     <title>Расстановка игроков</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/placement.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/live_stats.css') }}">
 </head>
 <body>
     <div class="container">
-        {% include 'placement/scoreboard.html' %}
+        {% include 'live_stats/scoreboard.html' %}
 
-        <div class="sets-container">
-            <div class="set" id="set-1">1 СЕТ</div>
-            <div class="set" id="set-2">2 СЕТ</div>
-            <div class="set" id="set-3">3 СЕТ</div>
-            <div class="set" id="set-4">4 СЕТ</div>
-            <div class="set" id="set-5">5 СЕТ</div>
-        </div>
+        {% include 'live_stats/score_in_sets.html' %}
 
-        {% include 'placement/court.html' %}
+        {% include 'live_stats/court.html' %}
 
-        {% include 'placement/additional_buttons.html' %}
+        {% include 'live_stats/additional_buttons.html' %}
 
         <div id="remove-player-modal" class="modal">
             <div class="modal-content">
@@ -49,7 +43,7 @@
             </div>
         </div>
 
-        <script src="{{ url_for('static', filename='js/placement.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/live_stats.js') }}"></script>
     </div>
 </body>
 </html>

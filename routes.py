@@ -20,8 +20,8 @@ def init_routes(app):
             flash(f'Ошибка загрузки команд: {str(e)}', 'error')
             return render_template('index.html', teams=[])
 
-    @app.route('/placement')
-    def placement():
+    @app.route('/live_stats')
+    def live_stats():
         if 'match_data' not in session:
             flash('Сначала настройте параметры матча', 'error')
             return redirect(url_for('match'))
@@ -32,7 +32,7 @@ def init_routes(app):
         with open(filename, 'r', encoding='utf-8') as f:
             team_data = json.load(f)
 
-        return render_template('placement.html',
+        return render_template('live_stats.html',
                                team=team_data['players'],
                                match_data=session['match_data'])
 
@@ -227,7 +227,7 @@ def init_routes(app):
                 json.dump(match_stats, f, ensure_ascii=False, indent=4)
 
             session['current_match_file'] = filename
-            return redirect(url_for('placement'))
+            return redirect(url_for('live_stats'))
 
         teams = [f.replace('.json', '') for f in os.listdir('teams') if f.endswith('.json')]
         if not teams:
@@ -354,7 +354,7 @@ def init_routes(app):
 
         except Exception as e:
             flash(f'Ошибка при завершении матча: {str(e)}', 'error')
-            return redirect(url_for('placement'))
+            return redirect(url_for('live_stats'))
 
     @app.route('/save_set', methods=['POST'])
     def save_set():

@@ -13,6 +13,7 @@ body {
     margin: 0 auto;
     padding: 2px;
     box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
+    user-select: none; /* Запрещаем выделение */
 }
 
 .button {
