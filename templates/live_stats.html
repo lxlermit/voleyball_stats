@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta content="width=device-width, initial-scale=1" name="vievport" />
+
+    <!--    Чтобы предотвратить увеличение контента при двойном касании на мобильных устройствах, добавьте следующие решения:-->
+    <!--    maximum-scale=1 - блокирует увеличение-->
+    <!--    user-scalable=no - отключает зум жестами-->
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
+
     <title>Расстановка игроков</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/live_stats.css') }}">

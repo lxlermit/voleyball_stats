@@ -1,5 +1,21 @@
 /* Основные стили для страницы расстановки */
 
+html {
+    touch-action: manipulation; /* Оптимизирует обработку касаний */
+}
+
+body {
+    -webkit-text-size-adjust: 100%; /* Предотвращает авто-масштабирование текста */
+    -webkit-tap-highlight-color: transparent; /* Убирает подсветку при тапе */
+    -webkit-user-select: none; /* Запрещает выделение текста */
+    user-select: none;
+}
+
+/* Для интерактивных элементов */
+button, .player-field, .action-field {
+    touch-action: manipulation;
+}
+
 /* Контейнер игроков */
 .players-header {
     display: flex;
