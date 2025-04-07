@@ -154,34 +154,48 @@ def init_routes(app):
     @app.route('/edit_team/<team_name>')
     def edit_existing_team(team_name):
         try:
-            existing_teams = [f.replace('.json', '') for f in os.listdir(app.teams_dir) if f.endswith('.json')]
             filename = os.path.join(app.teams_dir, f"{team_name}.json")
 
-            if os.path.exists(filename):
-                with open(filename, 'r', encoding='utf-8') as f:
-                    team_data = json.load(f)
-                return render_template('edit_team.html',
-                                       existing_teams=existing_teams,
-                                       creating_new=True,
-                                       players=team_data['players'],
-                                       team_name=team_name)
-            else:
+            if not os.path.exists(filename):
                 flash(f'Команда "{team_name}" не найдена', 'error')
-                return redirect(url_for('index'))
+                return redirect(url_for('teams_edit'))
+
+            with open(filename, 'r', encoding='utf-8') as f:
+                team_data = json.load(f)
+
+            # Группируем игроков по номерам для удобства редактирования
+            players_sorted = sorted(team_data['players'], key=lambda x: int(x['number']))
+
+            return render_template('edit_team.html',
+                                   players=players_sorted,
+                                   team_name=team_name)
+
         except Exception as e:
             flash(f'Ошибка загрузки команды: {str(e)}', 'error')
-            return redirect(url_for('index'))
+            return redirect(url_for('teams_edit'))
 
     @app.route('/save_team', methods=['POST'])
     def save_team():
         try:
             team_name = request.form['team_name']
+            if not team_name:
+                flash('Название команды не может быть пустым', 'error')
+                return redirect(url_for('teams_edit'))
+
             players = []
             used_numbers = set()
 
+            # Собираем игроков из формы
             i = 1
             while f'number_{i}' in request.form:
                 number = request.form[f'number_{i}']
+                last_name = request.form[f'last_name_{i}']
+                first_name = request.form[f'first_name_{i}']
+
+                if not (number and last_name and first_name):
+                    i += 1
+                    continue  # Пропускаем пустые строки
+
                 if number in used_numbers:
                     flash(f'Номер {number} уже используется!', 'error')
                     return redirect(url_for('edit_existing_team', team_name=team_name))
@@ -189,8 +203,8 @@ def init_routes(app):
                 used_numbers.add(number)
                 players.append({
                     'number': number,
-                    'last_name': request.form[f'last_name_{i}'],
-                    'first_name': request.form[f'first_name_{i}'],
+                    'last_name': last_name,
+                    'first_name': first_name,
                     'role': request.form[f'role_{i}'],
                     'front_pos': request.form[f'front_pos_{i}'],
                     'back_pos': request.form[f'back_pos_{i}'],
@@ -198,16 +212,20 @@ def init_routes(app):
                 })
                 i += 1
 
+            # Сохраняем обновлённую команду
             filename = os.path.join(app.teams_dir, f"{team_name}.json")
             with open(filename, 'w', encoding='utf-8') as f:
-                json.dump({'team': team_name, 'players': players}, f, ensure_ascii=False)
+                json.dump({
+                    'team': team_name,
+                    'players': players
+                }, f, ensure_ascii=False, indent=4)
 
-            flash(f'Команда "{team_name}" успешно сохранена!', 'success')
-            return redirect(url_for('edit_existing_team', team_name=team_name))
+            flash(f'Команда "{team_name}" успешно обновлена!', 'success')
+            return redirect(url_for('teams_edit'))  # Возвращаем к списку команд
 
         except Exception as e:
             flash(f'Ошибка сохранения: {str(e)}', 'error')
-            return redirect(url_for('index'))
+            return redirect(url_for('teams_edit'))
 
     @app.route('/delete_team', methods=['POST'])
     def delete_team():
@@ -221,10 +239,10 @@ def init_routes(app):
             else:
                 flash(f'Команда "{team_name}" не найдена', 'error')
 
-            return redirect(url_for('index'))
+            return redirect(url_for('teams_edit'))
         except Exception as e:
             flash(f'Ошибка удаления команды: {str(e)}', 'error')
-            return redirect(url_for('index'))
+            return redirect(url_for('teams_edit'))
 
     @app.route('/match', methods=['GET', 'POST'])
     def match():
@@ -259,7 +277,7 @@ def init_routes(app):
                 int(player['number']): f"{player['last_name']} {player['first_name'][0]}."
                 for player in team_data['players']
             }
-            print(f'---252--- my_teams_num_familia = {my_teams_num_familia}')
+            print(f'---280--- my_teams_num_familia = {my_teams_num_familia}')
 
             sorted_players = dict(sorted(
                 {
