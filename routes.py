@@ -36,7 +36,7 @@ def init_routes(app):
     def index():
         try:
             teams = [f.replace('.json', '') for f in os.listdir('teams_storage') if f.endswith('.json')]
-            return render_template('index.html', teams=teams)
+            return render_template('index.html', teams_edit=teams)
         except Exception as e:
             flash(f'Ошибка загрузки команд: {str(e)}', 'error')
             return render_template('index.html', teams=[])
@@ -72,14 +72,13 @@ def init_routes(app):
 
 
 
-    @app.route('/teams_storage')
-    @app.route('/teams_storage')
-    def teams():
+    @app.route('/teams_edit')
+    def teams_edit():
         try:
             # Проверяем существование директории
             if not os.path.exists(app.teams_dir):
                 os.makedirs(app.teams_dir)
-                return render_template('teams_storage.html', teams=[])
+                return render_template('teams_edit.html', teams=[])
 
             # Получаем список файлов команд
             team_files = [f for f in os.listdir(app.teams_dir)
@@ -98,11 +97,11 @@ def init_routes(app):
                 except json.JSONDecodeError:
                     continue  # Пропускаем битые JSON-файлы
 
-            return render_template('teams_storage.html', teams=teams)
+            return render_template('teams_edit.html', teams=teams)
 
         except Exception as e:
             flash(f'Ошибка загрузки команд: {str(e)}', 'error')
-            return render_template('teams_storage.html', teams=[])
+            return render_template('teams_edit.html', teams=[])
 
     @app.route('/team/<team_name>')
     def team_detail(team_name):
@@ -385,7 +384,7 @@ def init_routes(app):
             with open(os.path.join(app.teams_dir, filename), 'w', encoding='utf-8') as f:
                 json.dump(new_team, f, ensure_ascii=False, indent=4)
 
-            return redirect(url_for('teams_storage'))
+            return redirect(url_for('teams_edit'))
 
         return render_template('add_team.html')
 
