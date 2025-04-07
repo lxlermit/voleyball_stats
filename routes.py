@@ -25,8 +25,8 @@ def init_routes(app):
     flask_app = app
 
     # Инициализация путей
-    app.teams_dir = 'teams_storage'  # относительный путь к папке с командами
-    app.matches_dir = 'matches'  # относительный путь к папке с матчами
+    app.teams_dir = 'teams_storage'  # относительный путь к папке с волейбольными командами
+    app.matches_dir = 'matches'  # относительный путь к папке с волейбольными матчами (внутри них статистика)
 
     # Создаем папки при их отсутствии
     os.makedirs(app.teams_dir, exist_ok=True)
@@ -35,8 +35,9 @@ def init_routes(app):
     @app.route('/')
     def index():
         try:
-            teams = [f.replace('.json', '') for f in os.listdir('teams_storage') if f.endswith('.json')]
-            return render_template('index.html', teams_edit=teams)
+            # Получим список файлов - созданных пользователем команд из папки app.teams_dir(teams_storage)
+            team_files = [f.replace('.json', '') for f in os.listdir(app.teams_dir) if f.endswith('.json')]  # = ['ekran', 'tagila', 'new']
+            return render_template('index.html', teams=team_files)
         except Exception as e:
             flash(f'Ошибка загрузки команд: {str(e)}', 'error')
             return render_template('index.html', teams=[])
@@ -84,12 +85,13 @@ def init_routes(app):
             team_files = [f for f in os.listdir(app.teams_dir)
                           if f.endswith('.json') and os.path.isfile(os.path.join(app.teams_dir, f))]
 
-            teams = []
+            list_teams_info = []
+
             for filename in team_files:
                 try:
                     with open(os.path.join(app.teams_dir, filename), 'r', encoding='utf-8') as f:
                         team_data = json.load(f)
-                        teams.append({
+                        list_teams_info.append({
                             'name': team_data.get('team', filename[:-5]),
                             'filename': filename,
                             'player_count': len(team_data.get('players', []))
@@ -97,7 +99,12 @@ def init_routes(app):
                 except json.JSONDecodeError:
                     continue  # Пропускаем битые JSON-файлы
 
-            return render_template('teams_edit.html', teams=teams)
+            # list_teams_info =
+            # [{'name': 'ekran', 'filename': 'ekran.json', 'player_count': 17},
+            #  {'name': 'new', 'filename': 'new.json', 'player_count': 0},
+            #  {'name': 'tagila', 'filename': 'tagila.json', 'player_count': 1}]
+
+            return render_template('teams_edit.html', teams=list_teams_info)
 
         except Exception as e:
             flash(f'Ошибка загрузки команд: {str(e)}', 'error')
@@ -131,7 +138,7 @@ def init_routes(app):
     @app.route('/create_team', methods=['GET'])
     def show_create_team():
         try:
-            existing_teams = [f.replace('.json', '') for f in os.listdir('teams_storage') if f.endswith('.json')]
+            existing_teams = [f.replace('.json', '') for f in os.listdir(app.teams_dir) if f.endswith('.json')]
             return render_template('edit_team.html',
                                    existing_teams=existing_teams,
                                    creating_new=True,
@@ -143,7 +150,7 @@ def init_routes(app):
     @app.route('/edit_team/<team_name>')
     def edit_existing_team(team_name):
         try:
-            existing_teams = [f.replace('.json', '') for f in os.listdir('teams_storage') if f.endswith('.json')]
+            existing_teams = [f.replace('.json', '') for f in os.listdir(app.teams_dir) if f.endswith('.json')]
             filename = os.path.join(app.teams_dir, f"{team_name}.json")
 
             if os.path.exists(filename):
@@ -341,14 +348,14 @@ def init_routes(app):
             flash(f"Ошибка загрузки команд: {teams_result.get('message', 'Неизвестная ошибка')}", 'error')
             return redirect(url_for('index'))
 
-        teams = [f.replace('.json', '') for f in teams_result['files']]
+        names_teams = [f.replace('.json', '') for f in teams_result['files']]       # = ['ekran', 'new', 'tagila']
 
-        if not teams:
+        if not names_teams:
             flash('Сначала создайте команду!', 'error')
             return redirect(url_for('index'))
 
         return render_template('pre_game_setup.html',
-                               teams=teams,
+                               teams=names_teams,                                   # = ['ekran', 'new', 'tagila']
                                default_city='Санкт-Петербург',
                                default_opponent='Команда соперника')
 
@@ -361,9 +368,11 @@ def init_routes(app):
         except FileNotFoundError:
             return render_template('stats.html', data=None)
 
+
     @app.route('/settings')
     def settings():
         return render_template('app_settings.html')
+
 
     @app.route('/add_team', methods=['GET', 'POST'])
     def add_team():
@@ -387,6 +396,7 @@ def init_routes(app):
             return redirect(url_for('teams_edit'))
 
         return render_template('add_team.html')
+
 
     @app.route('/record_event', methods=['POST'])
     def record_event():
