@@ -280,6 +280,17 @@ def load_team_data(team_name: str, teams_dir: str = 'teams_storage') -> dict:
             if not isinstance(data, dict):
                 raise ValueError("Некорректный формат данных команды")
 
+            # Инициализация стартового состава если его нет
+            if 'starting_lineup' not in data:
+                data['starting_lineup'] = {
+                    'pos_1': None,
+                    'pos_2': None,
+                    'pos_3': None,
+                    'pos_4': None,
+                    'pos_5': None,
+                    'pos_6': None
+                }
+
             if 'players' not in data:
                 data['players'] = []
 

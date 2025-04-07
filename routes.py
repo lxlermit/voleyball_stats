@@ -163,12 +163,25 @@ def init_routes(app):
             with open(filename, 'r', encoding='utf-8') as f:
                 team_data = json.load(f)
 
+            # Добавляем проверку и инициализацию стартового состава
+            if 'starting_lineup' not in team_data:
+                team_data['starting_lineup'] = {
+                    'pos_1': None,
+                    'pos_2': None,
+                    'pos_3': None,
+                    'pos_4': None,
+                    'pos_5': None,
+                    'pos_6': None
+                }
+
             # Группируем игроков по номерам для удобства редактирования
             players_sorted = sorted(team_data['players'], key=lambda x: int(x['number']))
 
             return render_template('edit_team.html',
                                    players=players_sorted,
-                                   team_name=team_name)
+                                   team_name=team_name,
+                                   starting_lineup=team_data['starting_lineup'])  # Передаем в шаблон
+
 
         except Exception as e:
             flash(f'Ошибка загрузки команды: {str(e)}', 'error')
@@ -212,12 +225,23 @@ def init_routes(app):
                 })
                 i += 1
 
+            # Сохраняем стартовый состав
+            starting_lineup = {
+                'pos_1': request.form.get('pos_1'),
+                'pos_2': request.form.get('pos_2'),
+                'pos_3': request.form.get('pos_3'),
+                'pos_4': request.form.get('pos_4'),
+                'pos_5': request.form.get('pos_5'),
+                'pos_6': request.form.get('pos_6')
+            }
+
             # Сохраняем обновлённую команду
             filename = os.path.join(app.teams_dir, f"{team_name}.json")
             with open(filename, 'w', encoding='utf-8') as f:
                 json.dump({
                     'team': team_name,
-                    'players': players
+                    'players': players,
+                    'starting_lineup': starting_lineup  # Добавляем стартовый состав
                 }, f, ensure_ascii=False, indent=4)
 
             flash(f'Команда "{team_name}" успешно обновлена!', 'success')
