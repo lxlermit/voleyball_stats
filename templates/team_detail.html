@@ -24,7 +24,7 @@
     <div class="container">
         <h1>{{ team.team }} - Состав команды</h1>
 
-        <a href="{{ url_for('teams') }}" class="btn">← Назад к списку команд</a>
+        <a href="{{ url_for('teams_edit') }}" class="btn">← Назад к списку команд</a>
 
         {% for role, players in players_by_role.items() %}
         <h2 style="margin-top: 20px;">{{ role }}</h2>
