@@ -22,7 +22,7 @@ def init_routes(app):
     flask_app = app
 
     # Инициализация путей
-    app.teams_dir = 'teams'  # относительный путь к папке с командами
+    app.teams_dir = 'teams_storage'  # относительный путь к папке с командами
     app.matches_dir = 'matches'  # относительный путь к папке с матчами
 
     # Создаем папки при их отсутствии
@@ -32,7 +32,7 @@ def init_routes(app):
     @app.route('/')
     def index():
         try:
-            teams = [f.replace('.json', '') for f in os.listdir('teams') if f.endswith('.json')]
+            teams = [f.replace('.json', '') for f in os.listdir('teams_storage') if f.endswith('.json')]
             return render_template('index.html', teams=teams)
         except Exception as e:
             flash(f'Ошибка загрузки команд: {str(e)}', 'error')
@@ -43,6 +43,15 @@ def init_routes(app):
         if 'match_data' not in session:
             flash('Сначала настройте параметры матча', 'error')
             return redirect(url_for('match'))
+
+        logging.debug(f"--------------- session =  {session}")
+        logging.debug(f"--------------- session['current_match_file'] =  {session['current_match_file']}")
+        logging.debug(f"--------------- session['match_data'] =  {session['match_data']}")
+        logging.debug(f"--------------- flask_app.config =  {flask_app.config}")
+        logging.debug(f"--------------- flask_app.config['MATCHES_FOLDER'] =  {flask_app.config['MATCHES_FOLDER']}")
+
+        app.matches_dir_file = app.matches_dir + '/' + session['current_match_file']        # matches/ekran_2025_04_07__09_43_Соперник.json
+        logging.debug(f"--------------- app.matches_dir_file =  {app.matches_dir_file}")
 
         team_name = session['match_data']['our_team']
         filename = os.path.join(flask_app.config['UPLOAD_FOLDER'], f"{team_name}.json")
@@ -56,14 +65,14 @@ def init_routes(app):
 
 
 
-    @app.route('/teams')
-    @app.route('/teams')
+    @app.route('/teams_storage')
+    @app.route('/teams_storage')
     def teams():
         try:
             # Проверяем существование директории
             if not os.path.exists(app.teams_dir):
                 os.makedirs(app.teams_dir)
-                return render_template('teams.html', teams=[])
+                return render_template('teams_storage.html', teams=[])
 
             # Получаем список файлов команд
             team_files = [f for f in os.listdir(app.teams_dir)
@@ -82,11 +91,11 @@ def init_routes(app):
                 except json.JSONDecodeError:
                     continue  # Пропускаем битые JSON-файлы
 
-            return render_template('teams.html', teams=teams)
+            return render_template('teams_storage.html', teams=teams)
 
         except Exception as e:
             flash(f'Ошибка загрузки команд: {str(e)}', 'error')
-            return render_template('teams.html', teams=[])
+            return render_template('teams_storage.html', teams=[])
 
     @app.route('/team/<team_name>')
     def team_detail(team_name):
@@ -116,7 +125,7 @@ def init_routes(app):
     @app.route('/create_team', methods=['GET'])
     def show_create_team():
         try:
-            existing_teams = [f.replace('.json', '') for f in os.listdir('teams') if f.endswith('.json')]
+            existing_teams = [f.replace('.json', '') for f in os.listdir('teams_storage') if f.endswith('.json')]
             return render_template('edit_team.html',
                                    existing_teams=existing_teams,
                                    creating_new=True,
@@ -128,7 +137,7 @@ def init_routes(app):
     @app.route('/edit_team/<team_name>')
     def edit_existing_team(team_name):
         try:
-            existing_teams = [f.replace('.json', '') for f in os.listdir('teams') if f.endswith('.json')]
+            existing_teams = [f.replace('.json', '') for f in os.listdir('teams_storage') if f.endswith('.json')]
             filename = os.path.join(app.teams_dir, f"{team_name}.json")
 
             if os.path.exists(filename):
@@ -352,7 +361,7 @@ def init_routes(app):
             with open(os.path.join(app.teams_dir, filename), 'w', encoding='utf-8') as f:
                 json.dump(new_team, f, ensure_ascii=False, indent=4)
 
-            return redirect(url_for('teams'))
+            return redirect(url_for('teams_storage'))
 
         return render_template('add_team.html')
 

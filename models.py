@@ -1,4 +1,4 @@
-from flask import Flask, json
+from flask import Flask, json, session
 from werkzeug.utils import secure_filename  # Добавьте в начало файла
 import os
 from typing import Dict, List, Optional
@@ -9,7 +9,7 @@ ALLOWED_CHARS = set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456
 MAX_FILE_SIZE_MB = 16  # Максимальный размер файла в MB
 ALLOWED_EXTENSIONS = {'.json'}  # Разрешенные расширения файлов
 SAFE_DIRECTORIES = {  # Контроль рабочих директорий
-    'teams': {'max_size_mb': 50},
+    'teams_storage': {'max_size_mb': 50},
     'matches': {'max_size_mb': 100}
 }
 # ==============================
@@ -20,13 +20,14 @@ def init_models(app):
     Инициализация конфигурации и путей для хранения данных
     ввв
     """
+
     # Основные директории
-    app.config['UPLOAD_FOLDER'] = 'teams'  # Для хранения данных команд
-    app.config['MATCHES_FOLDER'] = 'matches'  # Для хранения данных матчей
+    app.config['UPLOAD_FOLDER'] = 'teams_storage'   # Для хранения данных команд
+    app.config['MATCHES_FOLDER'] = 'matches'        # Для хранения данных матчей
 
     # Добавляем проверки:
     SAFE_DIRECTORIES = {
-        'teams': {
+        'teams_storage': {
             'max_size_mb': 50,
             'allowed_extensions': ['.json']
         },
@@ -36,15 +37,15 @@ def init_models(app):
         }
     }
 
-    for dir_name in [app.config['UPLOAD_FOLDER'], app.config['MATCHES_FOLDER']]:
-        if dir_name not in SAFE_DIRECTORIES:
-            raise ValueError(f"Попытка инициализации небезопасной директории: {dir_name}")
-
-        os.makedirs(dir_name, exist_ok=True)
-
-        # Проверка прав доступа
-        if not os.access(dir_name, os.R_OK | os.W_OK):
-            raise PermissionError(f"Нет прав на запись в директорию {dir_name}")
+    # for dir_name in [app.config['UPLOAD_FOLDER'], app.config['MATCHES_FOLDER']]:
+    #     if dir_name not in SAFE_DIRECTORIES:
+    #         raise ValueError(f"Попытка инициализации небезопасной директории: {dir_name}")
+    #
+    #     os.makedirs(dir_name, exist_ok=True)
+    #
+    #     # Проверка прав доступа
+    #     if not os.access(dir_name, os.R_OK | os.W_OK):
+    #         raise PermissionError(f"Нет прав на запись в директорию {dir_name}")
 
     # Создаем директории если они не существуют
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -54,6 +55,8 @@ def init_models(app):
     app.teams_dir = app.config['UPLOAD_FOLDER']
     app.matches_dir = app.config['MATCHES_FOLDER']
 
+
+
     # Другие настройки из оригинального app.py
     app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB максимальный размер загружаемого файла
 
@@ -62,7 +65,7 @@ def init_models(app):
 
 
 
-def get_team_files(teams_dir: str = 'teams') -> dict:
+def get_team_files(teams_dir: str = 'teams_storage') -> dict:
     """
     Получение списка файлов команд с обработкой ошибок
 
@@ -222,7 +225,7 @@ def save_match_data(filename: str, data: dict, matches_dir: str = 'matches') -> 
         }
 
 
-def load_team_data(team_name: str, teams_dir: str = 'teams') -> dict:
+def load_team_data(team_name: str, teams_dir: str = 'teams_storage') -> dict:
     """
     Загрузка данных команды с расширенной обработкой ошибок
 
