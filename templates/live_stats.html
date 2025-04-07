@@ -48,17 +48,6 @@
             </div>
         </div>
 
-
-        <div id="session-data" style="display: none;">
-            <h3>Session Data:</h3>
-            <pre>{{ session | tojson }}</pre>
-
-        </div>
-
-        <button onclick="document.getElementById('session-data').style.display='block'">
-            Показать session данные
-        </button>
-
 <!--        <script src="{{ url_for('static', filename='js/live_stats.js') }}"></script>-->
         <script type="module" src="/static/js/live_stats/main.js"></script>
 <!--        <script src="{{ url_for('static', filename='js/live_stats/main.js') }}"></script>-->
