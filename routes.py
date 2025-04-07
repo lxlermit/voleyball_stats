@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, session, flash, jsonify, abort
+from flask import render_template, request, redirect, url_for, session, flash, jsonify, abort, current_app
 import json
 import os
 from datetime import datetime
@@ -7,6 +7,9 @@ from werkzeug.utils import secure_filename
 from models import get_team_files, save_match_data, load_team_data
 
 import logging
+
+from datetime import timedelta
+
 logging.basicConfig(level=logging.DEBUG)
 
 # === Лимиты для запросов ===
@@ -44,20 +47,24 @@ def init_routes(app):
             flash('Сначала настройте параметры матча', 'error')
             return redirect(url_for('match'))
 
-        logging.debug(f"--------------- session =  {session}")
-        logging.debug(f"--------------- session['current_match_file'] =  {session['current_match_file']}")
-        logging.debug(f"--------------- session['match_data'] =  {session['match_data']}")
-        logging.debug(f"--------------- flask_app.config =  {flask_app.config}")
-        logging.debug(f"--------------- flask_app.config['MATCHES_FOLDER'] =  {flask_app.config['MATCHES_FOLDER']}")
+        # logging.debug(f"--------------- session =  {session}")
+        # logging.debug(f"--------------- session['current_match_file'] =  {session['current_match_file']}")
+        # logging.debug(f"--------------- session['match_data'] =  {session['match_data']}")
+        # logging.debug(f"--------------- flask_app.config =  {flask_app.config}")
+        # logging.debug(f"--------------- flask_app.config['MATCHES_FOLDER'] =  {flask_app.config['MATCHES_FOLDER']}")
 
-        app.matches_dir_file = app.matches_dir + '/' + session['current_match_file']        # matches/ekran_2025_04_07__09_43_Соперник.json
-        logging.debug(f"--------------- app.matches_dir_file =  {app.matches_dir_file}")
+        # Путь к файлу со статистикой текущего матча
+        # app.matches_dir_file = app.matches_dir + '/' + session['current_match_file']        # matches/ekran_2025_04_07__09_43_Соперник.json
+        # logging.debug(f"--------------- app.matches_dir_file =  {app.matches_dir_file}")
+        # session['matches_dir_file'] = app.matches_dir_file
 
-        team_name = session['match_data']['our_team']
+        team_name = session['match_data']['our_team']           # Название нашей команды
         filename = os.path.join(flask_app.config['UPLOAD_FOLDER'], f"{team_name}.json")
+        # print(f'---63--- filename = {filename}')
 
         with open(filename, 'r', encoding='utf-8') as f:
-            team_data = json.load(f)
+            team_data = json.load(f)    # = {'team': 'ekran', 'players': [{'number': '1', 'last_name': 'Максимов', ...}, {'number': '2'... ]
+
 
         return render_template('live_stats.html',
                                team=team_data['players'],
@@ -236,6 +243,23 @@ def init_routes(app):
             except Exception as e:
                 flash(f'Ошибка загрузки команды: {str(e)}', 'error')
                 return redirect(url_for('match'))
+
+            # Вынул из файла ekran.json словарь {1: "Максимов Г.", 2:"Сампо С.", ... }
+            my_teams_num_familia = {
+                int(player['number']): f"{player['last_name']} {player['first_name'][0]}."
+                for player in team_data['players']
+            }
+            print(f'---252--- my_teams_num_familia = {my_teams_num_familia}')
+
+            sorted_players = dict(sorted(
+                {
+                    int(p['number']): f"{p['last_name']} {p['first_name'][0]}."
+                    for p in team_data['players']
+                }.items()
+            ))
+
+            session['my_teams_bench'] = sorted_players        # {1: "Максимов Г.", 2:"Сампо С.", ... }
+            print(f"session['my_teams_bench'] =  {session['my_teams_bench']}")
 
             # Подготавливаем структуру для статистики игроков
             players_stats = {}
@@ -499,3 +523,33 @@ def init_routes(app):
             return jsonify({'status': 'error', 'message': f'File operation failed: {str(e)}'}), 500
         except Exception as e:
             return jsonify({'status': 'error', 'message': f'Unexpected error: {str(e)}'}), 500
+
+    @app.route('/debug')
+    def debug_info():
+        def json_serializer(obj):
+            """Кастомный сериализатор для не-JSON объектов"""
+            if isinstance(obj, timedelta):
+                return str(obj)  # Конвертируем timedelta в строку
+            elif hasattr(obj, '__dict__'):
+                return obj.__dict__
+            return str(obj)  # Все остальное в строку
+
+        # Собираем данные сессии
+        session_data = dict(session)
+
+        # Собираем данные app с обработкой несериализуемых объектов
+        app_data = {
+            'config': {
+                k: json_serializer(v)
+                for k, v in current_app.config.items()
+                if not k.startswith('SECRET')
+            },
+            'extensions': list(current_app.extensions.keys()),
+            'url_map': [str(rule) for rule in current_app.url_map.iter_rules()],
+            'debug': current_app.debug
+        }
+
+        return jsonify({
+            'session': session_data,
+            'app': app_data
+        })
