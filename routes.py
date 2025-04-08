@@ -263,6 +263,7 @@ def init_routes(app):
             return redirect(url_for('teams_edit'))
 
     @app.route('/match', methods=['GET', 'POST'])
+    # По кнопке - Начать матч - попадаем сюда
     def match():
         if request.method == 'POST':
             # Проверка обязательных полей
@@ -279,8 +280,8 @@ def init_routes(app):
                 'our_team': request.form['our_team']
             }
 
-            team_name = request.form['our_team']
-            team_file = os.path.join(app.teams_dir, f"{team_name}.json")
+            our_team_name = request.form['our_team']
+            team_file = os.path.join(app.teams_dir, f"{our_team_name}.json")
 
             # Загружаем данные команды
             try:
@@ -290,12 +291,32 @@ def init_routes(app):
                 flash(f'Ошибка загрузки команды: {str(e)}', 'error')
                 return redirect(url_for('match'))
 
-            # Вынул из файла ekran.json словарь {1: "Максимов Г.", 2:"Сампо С.", ... }
-            my_teams_num_familia = {
-                int(player['number']): f"{player['last_name']} {player['first_name'][0]}."
-                for player in team_data['players']
+            # Формируем информацию о стартовом составе
+            starting_lineup = {}
+            if 'starting_lineup' in team_data:
+                for pos, player_num in team_data['starting_lineup'].items():
+                    if player_num:  # Если позиция заполнена
+                        player = next((p for p in team_data['players'] if p['number'] == player_num), None)
+                        if player:
+                            starting_lineup[pos] = {
+                                'number': player_num,
+                                'name': f"{player['last_name']} {player['first_name'][0]}.",
+                                'role': player.get('role', '')
+                            }
+
+            print(f'----- routes 307 ----- starting_lineup ----- = {starting_lineup}')
+            # Сохраняем данные матча в сессию
+            session['match_data'] = {
+                'city': request.form.get('city', 'Санкт-Петербург'),
+                'address': request.form.get('address', ''),
+                'competition': request.form.get('competition', ''),
+                'opponent': request.form.get('opponent', 'Команда соперника'),
+                'our_team': request.form['our_team'],
+                'starting_lineup': starting_lineup  # Добавляем стартовый состав
             }
-            # print(f'---280--- my_teams_num_familia = {my_teams_num_familia}')
+
+
+
 
             sorted_players = dict(sorted(
                 {
@@ -326,16 +347,16 @@ def init_routes(app):
 
             # Генерируем безопасное имя файла для матча
             now = datetime.now()
-            opponent_name = request.form.get('opponent', 'Команда соперника')
+            opponent_team_name = request.form.get('opponent', 'Команда соперника')
 
             # Очищаем имя от недопустимых символов
             def sanitize_filename(name):
                 keepchars = (' ', '.', '_')
                 return "".join(c for c in name if c.isalnum() or c in keepchars).rstrip()
 
-            safe_opponent = sanitize_filename(opponent_name)
+            safe_opponent = sanitize_filename(opponent_team_name)
             filename = (
-                f"{team_name}_{now.strftime('%Y_%m_%d__%H_%M')}_"
+                f"{our_team_name}_{now.strftime('%Y_%m_%d__%H_%M')}_"
                 f"{safe_opponent}.json"
             ).replace(" ", "_")
 
@@ -350,10 +371,11 @@ def init_routes(app):
                     "city": request.form.get('city', 'Санкт-Петербург'),
                     "address": request.form.get('address', ''),
                     "competition": request.form.get('competition', ''),
-                    "our_team": team_name,
-                    "opponent": opponent_name,
+                    "our_team": our_team_name,
+                    "opponent": opponent_team_name,
                     "status": "ongoing",
-                    "team_lineup": [p['number'] for p in team_data['players']]
+                    "team_lineup": [p['number'] for p in team_data['players']],
+                    "starting_lineup": starting_lineup,  # Добавляем стартовый состав
                 },
                 "sets": {},
                 "players_stats": players_stats,
@@ -427,7 +449,10 @@ def init_routes(app):
 
             new_team = {
                 "team": team_name,
-                "players": []
+                "players": [],
+                "starting_lineup": {
+                    "pos_1": 0, "pos_2": 0, "pos_3": 0, "pos_4": 0, "pos_5": 0, "pos_6": 0
+                }
             }
 
             with open(os.path.join(app.teams_dir, filename), 'w', encoding='utf-8') as f:

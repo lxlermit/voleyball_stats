@@ -1,9 +1,10 @@
 <div class="court-container" id="court-area">
+
     <!-- Сетка площадки -->
     <div class="net-label"># # # # # Сетка # # # # #</div>
 
     <div class="court-layout">
-        <!-- Первый ряд -->
+        <!-- Ряд у сетки -->
         <div class="net-zone" data-zone="4" id="zone-4">
             <div class="action-row">
                 <div class="action-field attack-plus">Удар +</div>
@@ -24,7 +25,12 @@
                 <div class="action-field receive-plus receive-field">Прием +</div>
                 <div class="action-field receive-minus receive-field">Прием -</div>
             </div>
-            <div class="player-field empty zone-button" id="player-4" data-zone="4">Зона 4</div>
+            <div class="player-field empty zone-button"
+                 id="player-4"
+                 data-zone="4"
+                 data-player-number="{{ match_data.starting_lineup.pos_4.number if match_data.starting_lineup.pos_4 else '' }}">
+                {{ match_data.starting_lineup.pos_4.name if match_data.starting_lineup.pos_4 else 'Зона 4' }}
+            </div>
         </div>
 
         <div class="net-zone" data-zone="3" id="zone-3">
@@ -47,7 +53,12 @@
                 <div class="action-field receive-plus receive-field">Прием +</div>
                 <div class="action-field receive-minus receive-field">Прием -</div>
             </div>
-            <div class="player-field empty zone-button" id="player-3" data-zone="3">Зона 3</div>
+            <div class="player-field empty zone-button"
+                 id="player-3"
+                 data-zone="3"
+                 data-player-number="{{ match_data.starting_lineup.pos_3.number if match_data.starting_lineup.pos_3 else '' }}">
+                {{ match_data.starting_lineup.pos_3.name if match_data.starting_lineup.pos_3 else 'Зона 3' }}
+            </div>
         </div>
 
         <div class="net-zone" data-zone="2" id="zone-2">
@@ -70,10 +81,15 @@
                 <div class="action-field receive-plus receive-field">Прием +</div>
                 <div class="action-field receive-minus receive-field">Прием -</div>
             </div>
-            <div class="player-field empty zone-button" id="player-2" data-zone="2">Зона 2</div>
+            <div class="player-field empty zone-button"
+                 id="player-2"
+                 data-zone="2"
+                 data-player-number="{{ match_data.starting_lineup.pos_2.number if match_data.starting_lineup.pos_2 else '' }}">
+                {{ match_data.starting_lineup.pos_2.name if match_data.starting_lineup.pos_2 else 'Зона 2' }}
+            </div>
         </div>
 
-        <!-- Второй ряд -->
+        <!-- Ряд у подачи -->
         <div class="back-zone" data-zone="5" id="zone-5">
             <div class="action-row">
                 <div class="action-field attack-plus">Удар +</div>
@@ -89,7 +105,12 @@
                 <div class="action-field receive-plus receive-field">Прием +</div>
                 <div class="action-field receive-minus receive-field">Прием -</div>
             </div>
-            <div class="player-field empty zone-button" id="player-5" data-zone="5">Зона 5</div>
+            <div class="player-field empty zone-button"
+                 id="player-5"
+                 data-zone="5"
+                 data-player-number="{{ match_data.starting_lineup.pos_5.number if match_data.starting_lineup.pos_5 else '' }}">
+                {{ match_data.starting_lineup.pos_5.name if match_data.starting_lineup.pos_5 else 'Зона 5' }}
+            </div>
         </div>
 
         <div class="back-zone" data-zone="6" id="zone-6">
@@ -107,7 +128,12 @@
                 <div class="action-field receive-plus receive-field">Прием +</div>
                 <div class="action-field receive-minus receive-field">Прием -</div>
             </div>
-            <div class="player-field empty zone-button" id="player-6" data-zone="6">Зона 6</div>
+            <div class="player-field empty zone-button"
+                 id="player-6"
+                 data-zone="6"
+                 data-player-number="{{ match_data.starting_lineup.pos_6.number if match_data.starting_lineup.pos_6 else '' }}">
+                {{ match_data.starting_lineup.pos_6.name if match_data.starting_lineup.pos_6 else 'Зона 6' }}
+            </div>
         </div>
 
         <div class="back-zone" data-zone="1" id="zone-1">
@@ -126,7 +152,23 @@
                 <div class="action-field receive-minus receive-field">Прием -</div>
             </div>
             <!-- Блок подачи будет добавляться динамически через JS -->
-            <div class="player-field empty zone-button" id="player-1" data-zone="1">Зона 1</div>
+            <div class="player-field zone-button"
+                 id="player-1"
+                 data-zone="1"
+                 data-player-number="{{ match_data.starting_lineup.pos_1.number if match_data.starting_lineup.pos_1 else '' }}">
+                {{ match_data.starting_lineup.pos_1.name if match_data.starting_lineup.pos_1 else 'Зона 1' }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для замен -->
+<div id="substitution-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Выберите игрока для замены</h2>
+        <div class="substitute-players-list" id="substitute-players">
+            <!-- Список запасных будет заполняться JavaScript -->
         </div>
     </div>
 </div>
