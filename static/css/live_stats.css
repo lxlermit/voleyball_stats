@@ -843,3 +843,36 @@ button, .player-field, .action-field {
 .substitute-player-btn:hover {
     background: #e0e0e0;
 }
+
+
+/* Стили для подсветки зоны замены игрока - НАЧАЛО*/
+.player-field.highlighted {
+    box-shadow: 0 0 0 3px #4CAF50;
+    background-color: rgba(76, 175, 80, 0.2);
+    transition: all 0.3s ease;
+}
+
+.modal-open {
+    overflow: hidden; /* Запрещаем скролл страницы при открытом модальном окне */
+}
+/* Стили для подсветки зоны замены игрока - КОНЕЦ */
+
+
+/* Для плавного закрытия модального окна - НАЧАЛО */
+.modal {
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    transition: transform 0.3s ease;
+    transform: translateY(-20px);
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+/* Для плавного закрытия модального окна - КОНЕЦ */
