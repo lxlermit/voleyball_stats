@@ -156,11 +156,11 @@
         }
     ],
     "starting_lineup": {
-        "pos_1": null,
-        "pos_2": null,
-        "pos_3": null,
-        "pos_4": null,
-        "pos_5": null,
-        "pos_6": null
+        "pos_1": "11",
+        "pos_2": "5",
+        "pos_3": "8",
+        "pos_4": "4",
+        "pos_5": "7",
+        "pos_6": "15"
     }
 }
