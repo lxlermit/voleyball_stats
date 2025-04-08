@@ -122,6 +122,10 @@ def init_routes(app):
 
         team_data = team_result['data']
 
+        # Инициализация стартового состава если отсутствует -
+        if 'starting_lineup' not in team_data:
+            team_data['starting_lineup'] = {f'pos_{i}': None for i in range(1, 7)}
+
         # Группировка игроков по амплуа
         players_by_role = {}
         for player in team_data.get('players', []):
@@ -135,11 +139,15 @@ def init_routes(app):
                                players_by_role=players_by_role,
                                team_name=team_name)
 
+
+
     # ПОХОЖЕ МОЖНО УДАЛИТЬ весь @app.route('/create_team', methods=['GET'])
     # --- ЭТО ЧТО-ТО СТАРОЕ И НЕ ИСПОЛЬЗУЕМОЕ ПОХОЖЕ
     @app.route('/create_team', methods=['GET'])
     def show_create_team():
+        app.logger.warning("--------------------------------------------------------------")
         app.logger.warning("Legacy endpoint /create_team called - redirecting to /add_team")
+        app.logger.warning("--------------------------------------------------------------")
         return redirect(url_for('add_team'))
     #     try:
     #         existing_teams = [f.replace('.json', '') for f in os.listdir(app.teams_dir) if f.endswith('.json')]
@@ -163,16 +171,9 @@ def init_routes(app):
             with open(filename, 'r', encoding='utf-8') as f:
                 team_data = json.load(f)
 
-            # Добавляем проверку и инициализацию стартового состава
+            # Инициализация стартового состава если отсутствует -
             if 'starting_lineup' not in team_data:
-                team_data['starting_lineup'] = {
-                    'pos_1': None,
-                    'pos_2': None,
-                    'pos_3': None,
-                    'pos_4': None,
-                    'pos_5': None,
-                    'pos_6': None
-                }
+                team_data['starting_lineup'] = {f'pos_{i}': None for i in range(1, 7)}
 
             # Группируем игроков по номерам для удобства редактирования
             players_sorted = sorted(team_data['players'], key=lambda x: int(x['number']))
