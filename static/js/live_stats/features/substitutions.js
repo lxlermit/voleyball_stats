@@ -1,9 +1,14 @@
 export function initSubstitutions() {
-    window.openSubstitutionModal = function(playerField) {
+    // Добавляем обработчик клика на все player-field
+    document.querySelectorAll('.player-field').forEach(field => {
+        field.addEventListener('click', function() {
+            openSubstitutionModal(this);
+        });
+    });
+
+    function openSubstitutionModal(playerField) {
         const modal = document.getElementById('substitution-modal');
         const playersList = document.getElementById('substitute-players');
-
-        // Очищаем предыдущий список
         playersList.innerHTML = '';
 
         // Получаем текущих игроков на поле
@@ -13,12 +18,14 @@ export function initSubstitutions() {
             if (num) currentPlayers.add(num);
         });
 
-        // Добавляем запасных игроков
-        window.state.players.forEach(player => {
+        // Получаем список всех игроков из глобальной переменной
+        const allPlayers = window.playersData || [];
+
+        allPlayers.forEach(player => {
             if (!currentPlayers.has(player.number)) {
                 const playerBtn = document.createElement('button');
                 playerBtn.className = 'substitute-player-btn';
-                playerBtn.textContent = `${player.number} - ${player.name}`;
+                playerBtn.textContent = `${player.number} - ${player.last_name} ${player.first_name[0]}.`;
                 playerBtn.onclick = () => {
                     substitutePlayer(playerField, player);
                     modal.style.display = 'none';
@@ -27,21 +34,19 @@ export function initSubstitutions() {
             }
         });
 
-        // Показываем модальное окно
         modal.style.display = 'block';
 
-        // Закрытие по клику на крестик
         modal.querySelector('.close').onclick = () => {
             modal.style.display = 'none';
         };
-    };
+    }
 
     function substitutePlayer(playerField, newPlayer) {
-        // Обновляем данные на поле
+        const zone = playerField.dataset.zone;
         playerField.dataset.playerNumber = newPlayer.number;
-        playerField.textContent = `${newPlayer.number} - ${newPlayer.name}`;
+        playerField.textContent = `${newPlayer.number} - ${newPlayer.last_name} ${newPlayer.first_name[0]}.`;
 
-        // Здесь можно добавить логику сохранения изменений в state/session
-        console.log(`Игрок ${newPlayer.number} заменен в зоне ${playerField.dataset.zone}`);
+        // Обновляем данные в session (можно добавить AJAX-запрос к серверу)
+        console.log(`Замена в зоне ${zone}: ${newPlayer.number}`);
     }
 }
