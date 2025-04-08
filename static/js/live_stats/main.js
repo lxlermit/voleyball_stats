@@ -4,6 +4,7 @@ import { initModal, initSettingsModal } from './ui/modals.js';
 import { initScoreControls } from './features/score.js';
 import { updateServeUI, updateZone1Actions } from './ui/serve-ui.js';
 import { initSubstitutions } from './features/substitutions.js';
+import { initTeamManagement } from './features/team_management.js';
 
 // Для ----- Модальное окно замены игроков в зонах на площадке
 import { initPlayers } from './features/players.js';
@@ -24,5 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initSettingsModal();
     setupActionButtonsForAllZones();
     initSubstitutions();
+    initTeamManagement();
     // window.modalManager = modalManager; // Делаем доступным глобально ----- Модальное окно замены игроков в зонах на площадке
 });

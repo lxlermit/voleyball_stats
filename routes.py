@@ -70,7 +70,8 @@ def init_routes(app):
         return render_template('live_stats.html',
                                team=team_data['players'],
                                match_data=session['match_data'],
-                               players_data=team_data['players'])
+                               players_data=team_data['players'],
+                               team_data=team_data)
 
 
 
