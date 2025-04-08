@@ -135,3 +135,53 @@
     background: #5a6268;
     color: white;
 }
+
+/* Starting Lineup Section */
+.starting-lineup-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.volleyball-court {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    padding: 1rem 0;
+}
+
+.court-row {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.front-row {
+    margin-bottom: 2rem;
+}
+
+.court-position {
+    width: 180px;
+    text-align: center;
+}
+
+.court-position label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+/* Визуальная линия сетки */
+.volleyball-court::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #dee2e6;
+    z-index: 0;
+}

@@ -225,7 +225,7 @@ def init_routes(app):
                 })
                 i += 1
 
-            # Сохраняем стартовый состав
+            # Получаем стартовый состав из формы
             starting_lineup = {
                 'pos_1': request.form.get('pos_1'),
                 'pos_2': request.form.get('pos_2'),
@@ -234,7 +234,7 @@ def init_routes(app):
                 'pos_5': request.form.get('pos_5'),
                 'pos_6': request.form.get('pos_6')
             }
-
+            print(f"--------------Стартовый состав:{starting_lineup}")  # Добавьте перед сохранением
             # Сохраняем обновлённую команду
             filename = os.path.join(app.teams_dir, f"{team_name}.json")
             with open(filename, 'w', encoding='utf-8') as f:
@@ -245,7 +245,7 @@ def init_routes(app):
                 }, f, ensure_ascii=False, indent=4)
 
             flash(f'Команда "{team_name}" успешно обновлена!', 'success')
-            return redirect(url_for('teams_edit'))  # Возвращаем к списку команд
+            return redirect(url_for('teams_edit'))
 
         except Exception as e:
             flash(f'Ошибка сохранения: {str(e)}', 'error')
