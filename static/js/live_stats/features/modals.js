@@ -3,7 +3,7 @@ import { returnPlayerToBench, resetField, clearAllPlayers } from '../features/pl
 import { flipCourt } from '../features/court.js';
 import { recordPlayerAction } from '../features/actions.js';
 import { updateScoreDisplay } from '../features/score.js';
-import { updateServeUI, updateZone1Actions } from './serve-ui.js';
+import { updateServeUI, updateZone1Actions } from '../ui/serve-ui.js';
 
 export function initModal() {
     const removeModalClose = document.querySelector('#remove-player-modal .close, #cancel-remove');
@@ -217,3 +217,35 @@ export function initSettingsModal() {
 // Экспорт в глобальную область
 window.openRemoveModal = openRemoveModal;
 window.showAttackOptionsModal = showAttackOptionsModal;
+
+
+// ----- Ниже все для появление модального окна при замене и вставке игроков в зоны на площадке -----
+
+export const modalManager = {
+    open: function(options) {
+        const modal = document.getElementById(options.id) || createModal(options.id);
+        modal.querySelector('.modal-content').innerHTML = options.content;
+        modal.style.display = 'block';
+
+        if (options.onOpen) options.onOpen();
+    },
+
+    close: function(id) {
+        const modal = document.getElementById(id);
+        if (modal) modal.style.display = 'none';
+    }
+};
+
+function createModal(id) {
+    const modal = document.createElement('div');
+    modal.id = id;
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body"></div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    return modal;
+}

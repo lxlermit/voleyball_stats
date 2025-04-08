@@ -73,3 +73,75 @@ export function clearAllPlayers() {
 // Экспортируем функции в глобальную область для court.js
 window.placePlayerOnField = placePlayerOnField;
 window.returnPlayerToBench = returnPlayerToBench;
+
+
+// ----- Все ниже для вставки игроков в зоны на площадке во время игры -----
+// features/players.js
+
+export function initPlayers() {
+    // Инициализация обработчиков клика по позициям
+    document.querySelectorAll('.player-field').forEach(field => {
+        field.addEventListener('click', handlePlayerClick);
+    });
+}
+
+function handlePlayerClick(e) {
+    const field = e.currentTarget;
+    const zone = field.dataset.zone;
+    showSubstitutionModal(zone);
+}
+
+export function showSubstitutionModal(zone) {
+    // Используем существующий модуль модальных окон
+    const modalContent = `
+        <h3>Выберите замену для зоны ${zone}</h3>
+        <div class="substitute-list" id="substitute-list-${zone}"></div>
+    `;
+
+    window.modalManager.open({
+        id: 'substitution-modal',
+        content: modalContent,
+        onOpen: () => populateSubstitutes(zone)
+    });
+}
+
+function populateSubstitutes(zone) {
+    const container = document.getElementById(`substitute-list-${zone}`);
+    const currentPlayers = getCurrentFieldPlayers();
+
+    window.state.teamPlayers.forEach(player => {
+        if (!currentPlayers.has(player.number)) {
+            const btn = document.createElement('button');
+            btn.className = 'substitute-btn';
+            btn.textContent = `${player.number} - ${player.name}`;
+            btn.onclick = () => substitutePlayer(zone, player.number);
+            container.appendChild(btn);
+        }
+    });
+}
+
+function getCurrentFieldPlayers() {
+    const players = new Set();
+    document.querySelectorAll('.player-field').forEach(field => {
+        players.add(field.dataset.playerNumber);
+    });
+    return players;
+}
+
+function substitutePlayer(zone, newPlayerNumber) {
+    const field = document.querySelector(`.player-field[data-zone="${zone}"]`);
+    const player = window.state.teamPlayers.find(p => p.number === newPlayerNumber);
+
+    if (field && player) {
+        // Обновляем данные на поле
+        field.dataset.playerNumber = player.number;
+        field.querySelector('.player-number').textContent = player.number;
+        field.querySelector('.player-name').textContent = player.name;
+
+        // Закрываем модальное окно
+        window.modalManager.close('substitution-modal');
+
+        // Обновляем состояние приложения
+        window.state.updatePlayerPosition(zone, player.number);
+    }
+}

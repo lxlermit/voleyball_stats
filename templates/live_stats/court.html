@@ -28,8 +28,9 @@
             <div class="player-field empty zone-button"
                  id="player-4"
                  data-zone="4"
-                 data-player-number="{{ match_data.starting_lineup.pos_4.number if match_data.starting_lineup.pos_4 else '' }}">
-                {{ match_data.starting_lineup.pos_4.name if match_data.starting_lineup.pos_4 else 'Зона 4' }}
+                 data-player-number="{{ session['match_data']['starting_lineup'].get('pos_4', {}).get('number', '') }}"
+                 onclick="openSubstitutionModal(this)">
+                {{ session['match_data']['starting_lineup'].get('pos_4', {}).get('name', 'Зона 4') }}
             </div>
         </div>
 
@@ -56,8 +57,9 @@
             <div class="player-field empty zone-button"
                  id="player-3"
                  data-zone="3"
-                 data-player-number="{{ match_data.starting_lineup.pos_3.number if match_data.starting_lineup.pos_3 else '' }}">
-                {{ match_data.starting_lineup.pos_3.name if match_data.starting_lineup.pos_3 else 'Зона 3' }}
+                 data-player-number="{{ session['match_data']['starting_lineup'].get('pos_3', {}).get('number', '') }}"
+                 onclick="openSubstitutionModal(this)">
+                {{ session['match_data']['starting_lineup'].get('pos_3', {}).get('name', 'Зона 3') }}
             </div>
         </div>
 
@@ -84,8 +86,9 @@
             <div class="player-field empty zone-button"
                  id="player-2"
                  data-zone="2"
-                 data-player-number="{{ match_data.starting_lineup.pos_2.number if match_data.starting_lineup.pos_2 else '' }}">
-                {{ match_data.starting_lineup.pos_2.name if match_data.starting_lineup.pos_2 else 'Зона 2' }}
+                 data-player-number="{{ session['match_data']['starting_lineup'].get('pos_2', {}).get('number', '') }}"
+                 onclick="openSubstitutionModal(this)">
+                {{ session['match_data']['starting_lineup'].get('pos_2', {}).get('name', 'Зона 2') }}
             </div>
         </div>
 
@@ -108,8 +111,9 @@
             <div class="player-field empty zone-button"
                  id="player-5"
                  data-zone="5"
-                 data-player-number="{{ match_data.starting_lineup.pos_5.number if match_data.starting_lineup.pos_5 else '' }}">
-                {{ match_data.starting_lineup.pos_5.name if match_data.starting_lineup.pos_5 else 'Зона 5' }}
+                 data-player-number="{{ session['match_data']['starting_lineup'].get('pos_5', {}).get('number', '') }}"
+                 onclick="openSubstitutionModal(this)">
+                {{ session['match_data']['starting_lineup'].get('pos_5', {}).get('name', 'Зона 5') }}
             </div>
         </div>
 
@@ -131,8 +135,9 @@
             <div class="player-field empty zone-button"
                  id="player-6"
                  data-zone="6"
-                 data-player-number="{{ match_data.starting_lineup.pos_6.number if match_data.starting_lineup.pos_6 else '' }}">
-                {{ match_data.starting_lineup.pos_6.name if match_data.starting_lineup.pos_6 else 'Зона 6' }}
+                 data-player-number="{{ session['match_data']['starting_lineup'].get('pos_6', {}).get('number', '') }}"
+                 onclick="openSubstitutionModal(this)">
+                {{ session['match_data']['starting_lineup'].get('pos_6', {}).get('name', 'Зона 6') }}
             </div>
         </div>
 
@@ -155,8 +160,9 @@
             <div class="player-field zone-button"
                  id="player-1"
                  data-zone="1"
-                 data-player-number="{{ match_data.starting_lineup.pos_1.number if match_data.starting_lineup.pos_1 else '' }}">
-                {{ match_data.starting_lineup.pos_1.name if match_data.starting_lineup.pos_1 else 'Зона 1' }}
+                 data-player-number="{{ session['match_data']['starting_lineup'].get('pos_1', {}).get('number', '') }}"
+                 onclick="openSubstitutionModal(this)">
+                {{ session['match_data']['starting_lineup'].get('pos_1', {}).get('name', 'Зона 1') }}
             </div>
         </div>
     </div>
