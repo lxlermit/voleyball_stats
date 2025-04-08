@@ -225,7 +225,7 @@ def init_routes(app):
                 })
                 i += 1
 
-            # Сохраняем стартовый состав
+            # Получаем стартовый состав из формы
             starting_lineup = {
                 'pos_1': request.form.get('pos_1'),
                 'pos_2': request.form.get('pos_2'),
@@ -234,6 +234,18 @@ def init_routes(app):
                 'pos_5': request.form.get('pos_5'),
                 'pos_6': request.form.get('pos_6')
             }
+
+            # print(f"--------------Стартовый состав:{starting_lineup}")  # Добавьте перед сохранением
+            # print("Form data:", request.form)  # Логируем все данные формы
+            # print("POSITIONS:", {
+            #     'pos_1': request.form.get('pos_1'),
+            #     'pos_2': request.form.get('pos_2'),
+            #     'pos_3': request.form.get('pos_3'),
+            #     'pos_4': request.form.get('pos_4'),
+            #     'pos_5': request.form.get('pos_5'),
+            #     'pos_6': request.form.get('pos_6')
+            # })
+
 
             # Сохраняем обновлённую команду
             filename = os.path.join(app.teams_dir, f"{team_name}.json")
@@ -245,7 +257,7 @@ def init_routes(app):
                 }, f, ensure_ascii=False, indent=4)
 
             flash(f'Команда "{team_name}" успешно обновлена!', 'success')
-            return redirect(url_for('teams_edit'))  # Возвращаем к списку команд
+            return redirect(url_for('teams_edit'))
 
         except Exception as e:
             flash(f'Ошибка сохранения: {str(e)}', 'error')
@@ -301,7 +313,7 @@ def init_routes(app):
                 int(player['number']): f"{player['last_name']} {player['first_name'][0]}."
                 for player in team_data['players']
             }
-            print(f'---280--- my_teams_num_familia = {my_teams_num_familia}')
+            # print(f'---280--- my_teams_num_familia = {my_teams_num_familia}')
 
             sorted_players = dict(sorted(
                 {
@@ -311,7 +323,7 @@ def init_routes(app):
             ))
 
             session['my_teams_bench'] = sorted_players        # {1: "Максимов Г.", 2:"Сампо С.", ... }
-            print(f"session['my_teams_bench'] =  {session['my_teams_bench']}")
+            # print(f"session['my_teams_bench'] =  {session['my_teams_bench']}")
 
             # Подготавливаем структуру для статистики игроков
             players_stats = {}

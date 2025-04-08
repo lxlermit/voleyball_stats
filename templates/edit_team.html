@@ -18,6 +18,94 @@
         <form method="POST" action="{{ url_for('save_team') }}" class="team-edit-form">
             <input type="hidden" name="team_name" value="{{ team_name }}">
 
+            <!-- Стартовый состав - теперь внутри формы -->
+            <div class="starting-lineup-section">
+                <h3><i class="fas fa-chess-board"></i> Стартовый состав</h3>
+
+                <div class="volleyball-court">
+                    <!-- Передняя линия (4-3-2) -->
+                    <div class="court-row front-row">
+                        <div class="court-position">
+                            <label>Позиция 4</label>
+                            <select name="pos_4" class="form-select">
+                                <option value="">-- Не выбрано --</option>
+                                {% for player in players %}
+                                <option value="{{ player.number }}"
+                                    {% if starting_lineup['pos_4'] == player.number|string %}selected{% endif %}>
+                                    #{{ player.number }} {{ player.last_name }} {{ player.first_name[0] }}.
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="court-position">
+                            <label>Позиция 3</label>
+                            <select name="pos_3" class="form-select">
+                                <option value="">-- Не выбрано --</option>
+                                {% for player in players %}
+                                <option value="{{ player.number }}"
+                                    {% if starting_lineup['pos_3'] == player.number|string %}selected{% endif %}>
+                                    #{{ player.number }} {{ player.last_name }} {{ player.first_name[0] }}.
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="court-position">
+                            <label>Позиция 2</label>
+                            <select name="pos_2" class="form-select">
+                                <option value="">-- Не выбрано --</option>
+                                {% for player in players %}
+                                <option value="{{ player.number }}"
+                                    {% if starting_lineup['pos_2'] == player.number|string %}selected{% endif %}>
+                                    #{{ player.number }} {{ player.last_name }} {{ player.first_name[0] }}.
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Задняя линия (5-6-1) -->
+                    <div class="court-row back-row">
+                        <div class="court-position">
+                            <label>Позиция 5</label>
+                            <select name="pos_5" class="form-select">
+                                <option value="">-- Не выбрано --</option>
+                                {% for player in players %}
+                                <option value="{{ player.number }}"
+                                    {% if starting_lineup['pos_5'] == player.number|string %}selected{% endif %}>
+                                    #{{ player.number }} {{ player.last_name }} {{ player.first_name[0] }}.
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="court-position">
+                            <label>Позиция 6</label>
+                            <select name="pos_6" class="form-select">
+                                <option value="">-- Не выбрано --</option>
+                                {% for player in players %}
+                                <option value="{{ player.number }}"
+                                    {% if starting_lineup['pos_6'] == player.number|string %}selected{% endif %}>
+                                    #{{ player.number }} {{ player.last_name }} {{ player.first_name[0] }}.
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="court-position">
+                            <label>Позиция 1</label>
+                            <select name="pos_1" class="form-select">
+                                <option value="">-- Не выбрано --</option>
+                                {% for player in players %}
+                                <option value="{{ player.number }}"
+                                    {% if starting_lineup['pos_1'] == player.number|string %}selected{% endif %}>
+                                    #{{ player.number }} {{ player.last_name }} {{ player.first_name[0] }}.
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Список игроков -->
             <div class="players-grid-header">
                 <div>№</div>
                 <div>Фамилия</div>
@@ -130,6 +218,21 @@
             if (e.target.classList.contains('color-picker')) {
                 e.target.nextElementSibling.textContent = e.target.value;
             }
+        });
+
+        // Запрет выбора одного игрока в нескольких позициях
+        document.querySelectorAll('select[name^="pos_"]').forEach(select => {
+            select.addEventListener('change', function() {
+                const selectedValue = this.value;
+                if (!selectedValue) return;
+
+                document.querySelectorAll('select[name^="pos_"]').forEach(otherSelect => {
+                    if (otherSelect !== this && otherSelect.value === selectedValue) {
+                        otherSelect.value = '';
+                        alert('Этот игрок уже выбран в другой позиции!');
+                    }
+                });
+            });
         });
     </script>
 </body>
