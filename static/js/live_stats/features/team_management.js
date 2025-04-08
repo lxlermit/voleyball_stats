@@ -4,7 +4,7 @@
  * @module teamManagement
  */
 
-function initTeamManagement() {
+export function initTeamManagement() {
     // Элементы модального окна
     const settingsModal = document.getElementById('settings-modal');
     const settingsBtn = document.getElementById('settings-btn');
@@ -168,5 +168,10 @@ function initTeamManagement() {
     }
 }
 
-// Добавляем в глобальную область видимости
-window.initTeamManagement = initTeamManagement;
+//// Добавляем в глобальную область видимости
+//window.initTeamManagement = initTeamManagement;
+
+// Инициализируем систему замен при загрузке модуля
+document.addEventListener('DOMContentLoaded', function() {
+    initTeamManagement();
+});

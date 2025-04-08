@@ -4,7 +4,7 @@
  * @module substitutions
  */
 
-function initSubstitutions() {
+export function initSubstitutions() {
     // Переменная для хранения текущего подсвеченного поля
     let currentlyHighlightedField = null;
 
@@ -133,10 +133,10 @@ function initSubstitutions() {
     }
 }
 
-// Добавляем в глобальную область видимости
-window.initSubstitutions = initSubstitutions;
+//// Добавляем в глобальную область видимости
+//window.initSubstitutions = initSubstitutions;
 
-//// Инициализируем систему замен при загрузке модуля
-//document.addEventListener('DOMContentLoaded', function() {
-//    initSubstitutions();
-//});
+// Инициализируем систему замен при загрузке модуля
+document.addEventListener('DOMContentLoaded', function() {
+    initSubstitutions();
+});
