@@ -3,7 +3,7 @@
  * Полная версия без сокращений
  */
 
-export function initTeamManagement() {
+function initTeamManagement() {
     // Элементы модального окна
     const settingsModal = document.getElementById('settings-modal');
     const settingsBtn = document.getElementById('settings-btn');
@@ -166,3 +166,5 @@ export function initTeamManagement() {
         closeSettingsModal();
     }
 }
+
+window.initTeamManagement = initTeamManagement;

@@ -3,7 +3,7 @@
  * Полная версия без сокращений
  */
 
-export function initSubstitutions() {
+function initSubstitutions() {
     // Переменная для хранения текущего подсвеченного поля
     let currentlyHighlightedField = null;
 
@@ -132,7 +132,5 @@ export function initSubstitutions() {
     }
 }
 
-// Инициализируем систему замен при загрузке модуля
-document.addEventListener('DOMContentLoaded', function() {
-    initSubstitutions();
-});
+// Делаем функцию доступной глобально
+window.initSubstitutions = initSubstitutions;
