@@ -140,25 +140,6 @@ def init_routes(app):
                                team_name=team_name)
 
 
-
-    # ПОХОЖЕ МОЖНО УДАЛИТЬ весь @app.route('/create_team', methods=['GET'])
-    # --- ЭТО ЧТО-ТО СТАРОЕ И НЕ ИСПОЛЬЗУЕМОЕ ПОХОЖЕ
-    @app.route('/create_team', methods=['GET'])
-    def show_create_team():
-        app.logger.warning("--------------------------------------------------------------")
-        app.logger.warning("Legacy endpoint /create_team called - redirecting to /add_team")
-        app.logger.warning("--------------------------------------------------------------")
-        return redirect(url_for('add_team'))
-    #     try:
-    #         existing_teams = [f.replace('.json', '') for f in os.listdir(app.teams_dir) if f.endswith('.json')]
-    #         return render_template('edit_team.html',
-    #                                existing_teams=existing_teams,
-    #                                creating_new=True,
-    #                                new_team_players=[])
-    #     except Exception as e:
-    #         flash(f'Ошибка при создании команды: {str(e)}', 'error')
-    #         return redirect(url_for('index'))
-
     @app.route('/edit_team/<team_name>')
     def edit_existing_team(team_name):
         try:
