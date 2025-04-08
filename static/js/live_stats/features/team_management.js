@@ -1,6 +1,7 @@
+// Для team_management.js
 /**
  * Модуль для управления составом команды
- * Полная версия без сокращений
+ * @module teamManagement
  */
 
 function initTeamManagement() {
@@ -167,4 +168,5 @@ function initTeamManagement() {
     }
 }
 
+// Добавляем в глобальную область видимости
 window.initTeamManagement = initTeamManagement;

@@ -1,6 +1,7 @@
+// Для substitutions.js
 /**
- * Модуль для управления заменой игроков на площадке
- * Полная версия без сокращений
+ * Модуль для управления заменой игроков
+ * @module substitutions
  */
 
 function initSubstitutions() {
@@ -132,5 +133,10 @@ function initSubstitutions() {
     }
 }
 
-// Делаем функцию доступной глобально
+// Добавляем в глобальную область видимости
 window.initSubstitutions = initSubstitutions;
+
+//// Инициализируем систему замен при загрузке модуля
+//document.addEventListener('DOMContentLoaded', function() {
+//    initSubstitutions();
+//});
