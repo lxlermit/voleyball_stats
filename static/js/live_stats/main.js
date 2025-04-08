@@ -4,7 +4,7 @@ import { initModal, initSettingsModal } from './ui/modals.js';
 import { initScoreControls } from './features/score.js';
 import { updateServeUI, updateZone1Actions } from './ui/serve-ui.js';
 import { initSubstitutions } from './features/substitutions.js';
-import { initTeamManagement } from './features/team_management_on_court.js';
+import { initTeamManagement } from './features/team_management.js';
 
 // Для ----- Модальное окно замены игроков в зонах на площадке
 import { initPlayers } from './features/players.js';

@@ -1,9 +1,10 @@
+// Для team_management.js
 /**
  * Модуль для управления составом команды
- * Полная версия без сокращений
+ * @module teamManagement
  */
 
-export function initTeamManagement() {
+function initTeamManagement() {
     // Элементы модального окна
     const settingsModal = document.getElementById('settings-modal');
     const settingsBtn = document.getElementById('settings-btn');
@@ -166,3 +167,6 @@ export function initTeamManagement() {
         closeSettingsModal();
     }
 }
+
+// Добавляем в глобальную область видимости
+window.initTeamManagement = initTeamManagement;

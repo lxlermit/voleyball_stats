@@ -1,9 +1,10 @@
+// Для substitutions.js
 /**
- * Модуль для управления заменой игроков на площадке
- * Полная версия без сокращений
+ * Модуль для управления заменой игроков
+ * @module substitutions
  */
 
-export function initSubstitutions() {
+function initSubstitutions() {
     // Переменная для хранения текущего подсвеченного поля
     let currentlyHighlightedField = null;
 
@@ -132,7 +133,10 @@ export function initSubstitutions() {
     }
 }
 
-// Инициализируем систему замен при загрузке модуля
-document.addEventListener('DOMContentLoaded', function() {
-    initSubstitutions();
-});
+// Добавляем в глобальную область видимости
+window.initSubstitutions = initSubstitutions;
+
+//// Инициализируем систему замен при загрузке модуля
+//document.addEventListener('DOMContentLoaded', function() {
+//    initSubstitutions();
+//});
