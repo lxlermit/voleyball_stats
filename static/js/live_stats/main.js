@@ -3,10 +3,10 @@ import { initZoneFields, flipCourt, setupActionButtonsForAllZones, setupFieldEve
 import { initModal, initSettingsModal } from './ui/modals.js';
 import { initScoreControls } from './features/score.js';
 import { updateServeUI, updateZone1Actions } from './ui/serve-ui.js';
-import { initSubstitutions } from './features/substitutions.js';
+import { initSubstitutions } from './features/substitutions.js'; // Измененный импорт
 import { initTeamManagement } from './features/team_management.js';
 
-// Для ----- Модальное окно замены игроков в зонах на площадке
+// Для модального окна замены игроков в зонах на площадке
 import { initPlayers } from './features/players.js';
 import { modalManager } from './features/modals.js';
 
@@ -14,6 +14,7 @@ import { modalManager } from './features/modals.js';
 window.setupFieldEvents = setupFieldEvents;
 window.flipCourt = flipCourt;
 window.clearAllPlayers = clearAllPlayers;
+window.Substitutions = Substitutions; // Добавляем Substitutions в глобальную область
 
 document.addEventListener('DOMContentLoaded', function() {
     initPlayerTags();
@@ -24,7 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
     updateZone1Actions();
     initSettingsModal();
     setupActionButtonsForAllZones();
-    initSubstitutions();
+    Substitutions.init(); // Измененный вызов
     initTeamManagement();
-    // window.modalManager = modalManager; // Делаем доступным глобально ----- Модальное окно замены игроков в зонах на площадке
+    initPlayers(); // Инициализация игроков
+
+    // Инициализация модального менеджера
+    // Убедитесь что modalManager действительно имеет метод init
+    if (modalManager && typeof modalManager.init === 'function') {
+        modalManager.init();
+    } else {
+        console.error('modalManager.init is not a function');
+    }
+
+
+
 });

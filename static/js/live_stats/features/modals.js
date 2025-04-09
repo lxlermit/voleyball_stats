@@ -222,7 +222,7 @@ window.showAttackOptionsModal = showAttackOptionsModal;
 // ----- Ниже все для появление модального окна при замене и вставке игроков в зоны на площадке -----
 
 export const modalManager = {
-    open: function(options) {
+    init: function(options) {
         const modal = document.getElementById(options.id) || createModal(options.id);
         modal.querySelector('.modal-content').innerHTML = options.content;
         modal.style.display = 'block';
