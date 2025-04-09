@@ -1,18 +1,64 @@
-import { initPlayerTags, clearAllPlayers } from './features/players.js';
-import { initZoneFields, flipCourt, setupActionButtonsForAllZones, setupFieldEvents } from './features/court.js';
-import { initModal, initSettingsModal } from './ui/modals.js';
-import { initScoreControls } from './features/score.js';
-import { updateServeUI, updateZone1Actions } from './ui/serve-ui.js';
-import { initSubstitutions } from './features/substitutions.js';
+// Новый main.js с исправлениями
+import {
+    initPlayerTags,
+    clearAllPlayers,
+    placePlayerOnField,
+    returnPlayerToBench,
+    resetField
+} from './features/players.js';
 
-// Для ----- Модальное окно замены игроков в зонах на площадке
-import { initPlayers } from './features/players.js';
-import { modalManager } from './features/modals.js';
+import {
+    initZoneFields,
+    flipCourt,
+    setupActionButtonsForAllZones,
+    setupFieldEvents,
+    setupActionButtons
+} from './features/court.js';
 
-// Экспортируем функции в глобальную область
+import {
+    initModal,
+    initSettingsModal,
+    openRemoveModal,
+    showAttackOptionsModal,
+    modalManager
+} from './features/modals.js';
+
+import {
+    initScoreControls,
+    updateScoreDisplay
+} from './features/score.js';
+
+import {
+    updateServeUI,
+    updateZone1Actions
+} from './features/serve-ui.js';
+
+import {
+    initSubstitutions
+} from './features/substitutions.js';
+
+import {
+    recordPlayerAction,
+    startLongPress,
+    endLongPress,
+    cancelLongPress,
+    handleAttackPlusClick
+} from './features/actions.js';
+
+// Единый глобальный экспорт
 window.setupFieldEvents = setupFieldEvents;
 window.flipCourt = flipCourt;
 window.clearAllPlayers = clearAllPlayers;
+window.placePlayerOnField = placePlayerOnField;
+window.returnPlayerToBench = returnPlayerToBench;
+window.openRemoveModal = openRemoveModal;
+window.showAttackOptionsModal = showAttackOptionsModal;
+window.recordPlayerAction = recordPlayerAction;
+window.startLongPress = startLongPress;
+window.endLongPress = endLongPress;
+window.cancelLongPress = cancelLongPress;
+window.handleAttackPlusClick = handleAttackPlusClick;
+window.modalManager = modalManager;
 
 document.addEventListener('DOMContentLoaded', function() {
     initPlayerTags();
@@ -24,5 +70,4 @@ document.addEventListener('DOMContentLoaded', function() {
     initSettingsModal();
     setupActionButtonsForAllZones();
     initSubstitutions();
-    // window.modalManager = modalManager; // Делаем доступным глобально ----- Модальное окно замены игроков в зонах на площадке
 });

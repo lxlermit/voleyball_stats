@@ -1,5 +1,5 @@
 import { appState } from '../core/state.js';
-import { updateZone1Actions } from '../ui/serve-ui.js';
+import { updateZone1Actions } from '../features/serve-ui.js';
 
 export function setupFieldEvents(field) {
     field.addEventListener('dragover', function(e) {
@@ -108,7 +108,3 @@ export function setupActionButtonsForAllZones() {
         setupActionButtons(zone);
     });
 }
-
-// Экспорт в глобальную область
-window.setupFieldEvents = setupFieldEvents;
-window.flipCourt = flipCourt;

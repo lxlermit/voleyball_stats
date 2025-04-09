@@ -27,7 +27,7 @@ export function recordPlayerAction(playerNumber, actionType, zone) {
     });
 }
 
-let longPressTimer = null;
+export let longPressTimer = null;
 
 export function startLongPress(e) {
     longPressTimer = setTimeout(() => {

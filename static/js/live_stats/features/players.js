@@ -1,5 +1,5 @@
 import { appState } from '../core/state.js';
-import { updateZone1Actions } from '../ui/serve-ui.js';
+import { updateServeUI, updateZone1Actions } from './serve-ui.js';
 
 // Основные экспортируемые функции
 export function placePlayerOnField(field, number, name, color, zone) {

@@ -3,7 +3,7 @@ import { returnPlayerToBench, resetField, clearAllPlayers } from '../features/pl
 import { flipCourt } from '../features/court.js';
 import { recordPlayerAction } from '../features/actions.js';
 import { updateScoreDisplay } from '../features/score.js';
-import { updateServeUI, updateZone1Actions } from '../ui/serve-ui.js';
+import { updateServeUI, updateZone1Actions } from '../features/serve-ui.js';
 
 export function initModal() {
     const removeModalClose = document.querySelector('#remove-player-modal .close, #cancel-remove');
@@ -249,3 +249,4 @@ function createModal(id) {
     document.body.appendChild(modal);
     return modal;
 }
+
