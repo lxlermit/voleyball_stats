@@ -1,5 +1,5 @@
-import { appState } from '../core/state.js';
-import { recordPlayerAction } from '../features/actions.js';
+import { appState } from './state.js';
+import { recordPlayerAction } from './actions.js';
 
 export function updateServeUI() {
     const serveButton = document.getElementById('serve-toggle-btn');

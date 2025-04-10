@@ -59,14 +59,14 @@ def init_routes(app):
         # logging.debug(f"--------------- app.matches_dir_file =  {app.matches_dir_file}")
         # session['matches_dir_file'] = app.matches_dir_file
 
-        team_name = session['match_data']['our_team']           # Название нашей команды
+        team_name = session['match_data']['our_team']
         filename = os.path.join(flask_app.config['UPLOAD_FOLDER'], f"{team_name}.json")
         # print(f'---63--- filename = {filename}')
 
         with open(filename, 'r', encoding='utf-8') as f:
-            team_data = json.load(f)    # = {'team': 'ekran', 'players': [{'number': '1', 'last_name': 'Максимов', ...}, {'number': '2'... ]
+            team_data = json.load(f)
 
-
+        # Передаем данные игроков в шаблон
         return render_template('live_stats.html',
                                team=team_data['players'],
                                match_data=session['match_data'],

@@ -1,9 +1,9 @@
-import { appState, matchState } from '../core/state.js';
-import { returnPlayerToBench, resetField, clearAllPlayers } from '../features/players.js';
-import { flipCourt } from '../features/court.js';
-import { recordPlayerAction } from '../features/actions.js';
-import { updateScoreDisplay } from '../features/score.js';
-import { updateServeUI, updateZone1Actions } from '../features/serve-ui.js';
+import { appState, matchState } from './state.js';
+import { returnPlayerToBench, resetField, clearAllPlayers } from './players.js';
+import { flipCourt } from './court.js';
+import { recordPlayerAction } from './actions.js';
+import { updateScoreDisplay } from './score.js';
+import { updateServeUI, updateZone1Actions } from './serve-ui.js';
 
 export function initModal() {
     const removeModalClose = document.querySelector('#remove-player-modal .close, #cancel-remove');

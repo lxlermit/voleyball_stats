@@ -802,9 +802,11 @@ button, .player-field, .action-field {
     z-index: 100;
     left: 0;
     top: 0;
-    width: 100%;
+/*    width: 100%;  */
     height: 100%;
     background-color: rgba(0,0,0,0.7);
+    max-width: 90%;
+    width: 400px;
 }
 
 .modal-content {
@@ -812,9 +814,11 @@ button, .player-field, .action-field {
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 90%;
+/*    width: 90%;   */
     max-width: 400px;
     border-radius: 5px;
+    max-width: 90%;
+    width: 400px;
 }
 
 .close {
@@ -826,22 +830,26 @@ button, .player-field, .action-field {
 }
 
 .substitute-players-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    margin-top: 15px;
+    padding: 15px;
 }
 
-.substitute-player-btn {
-    padding: 10px;
-    background: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.substitute-btn {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f0f0f0;
     cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    font-size: 14px;
 }
 
-.substitute-player-btn:hover {
-    background: #e0e0e0;
+.substitute-btn:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.02);
 }
 
 

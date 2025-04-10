@@ -1,4 +1,4 @@
-import { matchState } from '../core/state.js';
+import { matchState } from './state.js';
 
 export function initScoreControls() {
     document.getElementById('our-point-btn')?.addEventListener('click', () => {

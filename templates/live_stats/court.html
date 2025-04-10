@@ -168,17 +168,13 @@
     </div>
 </div>
 
-<!-- Модальное окно для замен -->
+<!-- В конец файла добавляем модальное окно для замен -->
 <div id="substitution-modal" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Выберите игрока для замены</h2>
-        <div class="substitute-players-list" id="substitute-players">
-            <!-- Список запасных будет заполняться JavaScript -->
-        </div>
+        <span class="close" onclick="document.getElementById('substitution-modal').style.display='none'">&times;</span>
+        <div id="substitution-modal-content"></div>
     </div>
 </div>
-
 
 <div id="attack-modal" class="modal">
     <div class="modal-content attack-modal-content">

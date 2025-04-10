@@ -48,8 +48,11 @@
             </div>
         </div>
 
-        <script type="module" src="/static/js/live_stats/main.js"></script>
-
+        <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!--        Передаем данные игроков из Flask в JavaScript-->
+        <script>
+            window.playersData = {{ players_data|tojson|safe }};
+        </script>
     </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
-import { appState } from '../core/state.js';
-import { updateZone1Actions } from '../features/serve-ui.js';
+import { appState } from './state.js';
+import { updateZone1Actions } from './serve-ui.js';
 
 export function setupFieldEvents(field) {
     field.addEventListener('dragover', function(e) {

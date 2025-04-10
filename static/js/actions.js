@@ -1,4 +1,4 @@
-import { appState } from '../core/state.js';
+import { appState } from './state.js';
 
 export function recordPlayerAction(playerNumber, actionType, zone) {
     console.log(`Игрок #${playerNumber} в зоне ${zone}: ${actionType}`);

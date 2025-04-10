@@ -4,8 +4,10 @@ import {
     clearAllPlayers,
     placePlayerOnField,
     returnPlayerToBench,
-    resetField
-} from './features/players.js';
+    resetField,
+    openSubstitutionModal,      // модальное окно замены
+    substitutePlayer            // модальное окно замены
+} from './players.js';
 
 import {
     initZoneFields,
@@ -13,7 +15,7 @@ import {
     setupActionButtonsForAllZones,
     setupFieldEvents,
     setupActionButtons
-} from './features/court.js';
+} from './court.js';
 
 import {
     initModal,
@@ -21,21 +23,21 @@ import {
     openRemoveModal,
     showAttackOptionsModal,
     modalManager
-} from './features/modals.js';
+} from './modals.js';
 
 import {
     initScoreControls,
     updateScoreDisplay
-} from './features/score.js';
+} from './score.js';
 
 import {
     updateServeUI,
     updateZone1Actions
-} from './features/serve-ui.js';
+} from './serve-ui.js';
 
 import {
     initSubstitutions
-} from './features/substitutions.js';
+} from './substitutions.js';
 
 import {
     recordPlayerAction,
@@ -43,7 +45,7 @@ import {
     endLongPress,
     cancelLongPress,
     handleAttackPlusClick
-} from './features/actions.js';
+} from './actions.js';
 
 // Единый глобальный экспорт
 window.setupFieldEvents = setupFieldEvents;
@@ -59,6 +61,9 @@ window.endLongPress = endLongPress;
 window.cancelLongPress = cancelLongPress;
 window.handleAttackPlusClick = handleAttackPlusClick;
 window.modalManager = modalManager;
+// модальное окно замены
+window.openSubstitutionModal = openSubstitutionModal;
+window.substitutePlayer = substitutePlayer;
 
 document.addEventListener('DOMContentLoaded', function() {
     initPlayerTags();
